@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GN Database App - Rodrigo Digital Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.30s;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+        .system-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .system-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        h2 {
+            color: #2c5364;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .features-list {
+            list-style-type: square;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .features-list li {
+            margin-bottom: 8px;
+        }
+        .tech-badge {
+            display: inline-block;
+            background: #e1f5fe;
+            color: #0288d1;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 8px;
+            margin-top: 10px;
+        }
+        .contact-box {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e8f4f8;
+            border-left: 5px solid #007bff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>RODRIGO DIGITAL SYSTEMS</h1>
+        <p>GN Database App - ග්‍රාම නිලධාරී වසම් කළමනාකරණ පද්ධතිය</p>
+    </header>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">&larr; ප්‍රධාන පිටුවට (Home)</a>
+
+        <div class="system-card">
+            <img src="images/gn-app.png" alt="GN Database App" class="system-img">
+
+            <h2>පද්ධතිය පිළිබඳ හැඳින්වීම</h2>
+            <p>
+                ග්‍රාම නිලධාරී වසමක පවුල් සහ පුද්ගල තොරතුරු ආරක්ෂිතව, විධිමත්ව හා කාර්යක්ෂමව පාලනය කිරීම සඳහා විශේෂයෙන් නිර්මාණය කරන ලද මෘදුකාංග පද්ධතියකි. මෙමඟින් දත්ත සෙවීම, වාර්තා සැකසීම සහ සහතික පත් ලබා දීම ඉතා ඉක්මනින් සිදු කළ හැක.
+            </p>
+
+            <br>
+            <h2>ප්‍රධාන විශේෂාංග (Key Features)</h2>
+            <ul class="features-list">
+                <li>පවුල් සහ පුද්ගල තොරතුරු ඇතුළත් කිරීම සහ යාවත්කාලීන කිරීම.</li>
+                <li>ක්ෂණිකව දත්ත සෙවීමේ පහසුකම (Advanced Search by NIC / Name / House No).</li>
+                <li>ජ්‍යෙෂ්ඨ පුරවැසියන්, අස්වැසුම ප්‍රතිලාභීන් සහ විශේෂ අවශ්‍යතා සහිත අයගේ ලැයිස්තු වෙන්කර ගැනීම.</li>
+                <li>විවිධ නිල වාර්තා (Reports) පහසුවෙන් Print/Export කරගැනීමේ හැකියාව.</li>
+                <li>දත්ත ආරක්ෂිතව පවත්වා ගැනීමට පරිශීලක මුරපද (User Authentication).</li>
+            </ul>
+
+            <br>
+            <h2>භාවිත කළ තාක්ෂණයන් (Technologies Used)</h2>
+            <div>
+                <span class="tech-badge">MySQL Server</span>
+                <span class="tech-badge">Desktop UI Framework</span>
+                <span class="tech-badge">Database Management</span>
+            </div>
+
+            <div class="contact-box">
+                <h3>මෙම පද්ධතිය ලබාගැනීමට හෝ Demo එකක් නැරඹීමට අවශ්‍යද?</h3>
+                <p>වැඩිදුර තොරතුරු සඳහා අප හා සම්බන්ධ වන්න: <strong>07X XXXXXXX</strong></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
