@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Digital Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #0288d1;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #f39c12, #f1c40f, #f39c12);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+        .logo-container h1 {
+            font-size: 24px;
+            color: #000;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a:hover {
+            background: #2c3e50;
+            color: #fff;
+        }
+        .hero {
+            text-align: center;
+            padding: 25px 10px;
+            color: #fff;
+        }
+        .hero h2 {
+            font-size: 26px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        /* Profile Section Styling */
+        .profile-card {
+            max-width: 1160px;
+            margin: 0 auto 30px auto;
+            background: linear-gradient(135deg, #ffffff, #f1f8fc);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-left: 6px solid #f39c12;
+        }
+        .profile-card h3 {
+            color: #2c3e50;
+            font-size: 22px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .profile-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 12px;
+        }
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .award-badge {
+            background: #2c3e50;
+            color: #f1c40f;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #f39c12;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 2;
+        }
+        .tech-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        .mysql { background: #27ae60; }
+        .ai-ocr { background: #e74c3c; }
+
+        .card-img-container {
+            height: 180px;
+            overflow: hidden;
+            background: #eee;
+        }
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-body h3 {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .card-body p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px 0;
+            background: #0288d1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #01579b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="RDS Logo">
+            <h1>RODRIGO DIGITAL SYSTEMS</h1>
+        </div>
+        <nav>
+            <a href="#">🏠 Home</a>
+            <a href="#systems">⚙️ Systems</a>
+            <a href="#about">ℹ️ About Developer</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>(System Solutions 7)</h2>
+    </div>
+
+    <!-- Developer Profile Section -->
+    <div class="profile-card" id="about">
+        <h3>🏆 මෘදුකාංග නිර්මාණකරුගේ පසුබිම (Developer Background)</h3>
+        <p>වසර 35කට අධික ප්‍රායෝගික රාජ්‍ය සේවා අත්දැකීම් සහිත විශ්‍රාමික ග්‍රාම නිලධාරීවරයෙකු විසින් මෙම පද්ධති සැලසුම් කර ඇත. වසර 18ක් පුරා ග්‍රාම නිලධාරී දත්ත පද්ධති යාවත්කාලීන කරමින් සහ වැඩිදියුණු කරමින් ලබාගත් පරිපූර්ණ දැනුම මෙම මෘදුකාංග සඳහා යොදාගෙන තිබේ.</p>
+        <div class="badge-container">
+            <span class="award-badge">🥇 2010-2011 ග්‍රාම නිලධාරී කාර්යාල කළමනාකරණ තරගය - සමස්ත ලංකා 03 වන ස්ථානය</span>
+            <span class="award-badge">🎖️ ජනාධිපති විශේෂ කුසලතා සම්මාන ලාභී</span>
+            <span class="award-badge">⭐ වසර 35+ ක්ෂේත්‍ර අත්දැකීම්</span>
+        </div>
+    </div>
+
+    <div class="container" id="systems">
+
+        <div class="card">
+            <div class="badge">1</div>
+            <div class="tech-tag mysql">MySQL Server</div>
+            <div class="card-img-container">
+                <img src="images/library.png" alt="Library Management System">
+            </div>
+            <div class="card-body">
+                <h3>Library Management System</h3>
+                <p>සම්පූර්ණ පොත් සහ සාමාජික කළමනාකරණ පද්ධතිය.</p>
+                <a href="library.html" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="badge">2</div>
+            <div class="tech-tag mysql">MySQL Server</div>
+            <div class="card-img-container">
+                <img src="images/preschool.png" alt="Preschool Manager Pro">
+            </div>
+            <div class="card-body">
+                <h3>Preschool Manager Pro</h3>
+                <p>නිවැරදිව පවත්වා ගන්නා පද්ධතිය.</p>
+                <a href="#" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="badge">3</div>
+            <div class="tech-tag mysql">MySQL Server</div>
+            <div class="card-img-container">
+                <img src="images/ayurveda.png" alt="Ayurvedic Center">
+            </div>
+            <div class="card-body">
+                <h3>Ayurvedic Center</h3>
+                <p>ආරක්ෂිතව ගබඩා කරන පද්ධතිය.</p>
+                <a href="#" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="badge">4</div>
+            <div class="tech-tag mysql">MySQL Server</div>
+            <div class="card-img-container">
+                <img src="images/gn-app.png" alt="GN Database App">
+            </div>
+            <div class="card-body">
+                <h3>GN Database App</h3>
+                <p>ග්‍රාම නිලධාරී වසම්වල පවුල් සහ පුද්ගල තොරතුරු කාර්යක්ෂමව පාලනය කිරීමේ පද්ධතිය.</p>
+                <a href="gn-app.html" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="badge">5</div>
+            <div class="tech-tag mysql">MySQL Server</div>
+            <div class="card-img-container">
+                <img src="images/prison.png" alt="Tharushi Prison System">
+            </div>
+            <div class="card-body">
+                <h3>Tharushi Prison System</h3>
+                <p>බන්ධනාගාර රැඳවියන්ගේ සහ නරඹන්නන්ගේ දත්ත ආරක්ෂිතව පාලනය කරන පද්ධතිය.</p>
+                <a href="#" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="badge">6</div>
+            <div class="tech-tag ai-ocr">AI/OCR Engine</div>
+            <div class="card-img-container">
+                <img src="images/swara.png" alt="Swara Voice OCR">
+            </div>
+            <div class="card-body">
+                <h3>Swara Voice OCR</h3>
+                <p>කහඩ සහ පින්තූර හරහා සිංහල/ඉංග්‍රීසි අකුරු හඳුනාගන්නා AI තාක්ෂණික පද්ධතිය.</p>
+                <a href="#" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="badge">7</div>
+            <div class="tech-tag mysql">MySQL Server</div>
+            <div class="card-img-container">
+                <img src="images/shop-system.png" alt="Shop Management System">
+            </div>
+            <div class="card-body">
+                <h3>Shop Management System</h3>
+                <p>ව්‍යාපාරික ආයතන සඳහා වන සම්පූර්ණ තොග සහ අලෙවි පාලන පද්ධතිය.</p>
+                <a href="#" class="btn">විස්තර බලන්න</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
