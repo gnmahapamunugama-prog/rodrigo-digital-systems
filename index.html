@@ -104,30 +104,39 @@
 
         .content-area { flex-grow: 1; }
 
+        /* Developer Background - Sky Blue & Office Overlay Style */
         .dev-info-card {
-            background: #ffffff;
-            padding: 20px;
+            background: linear-gradient(135deg, rgba(135, 206, 250, 0.90), rgba(30, 144, 255, 0.92)), url('images/office-bg.jpg');
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
+            padding: 25px;
             border-radius: 15px;
-            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.6), 0 15px 35px rgba(0,0,0,0.25);
             margin-bottom: 25px;
+            transform: translateY(-3px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
         }
 
         .dev-info-card h2 {
-            color: #01579b;
+            color: #002b49;
             font-size: 22px;
             margin-bottom: 12px;
-            border-bottom: 2px solid #e0e0e0;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.6);
             padding-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 10px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         .dev-info-card p {
-            color: #444;
+            color: #112233;
             line-height: 1.6;
             margin-bottom: 15px;
             font-size: 15px;
+            font-weight: 500;
         }
 
         .badges-container {
@@ -145,7 +154,7 @@
             font-weight: bold;
             font-size: 14px;
             color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
         .badge-green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
@@ -421,6 +430,7 @@
        class="whatsapp-float" target="_blank" title="WhatsApp හරහා සම්බන්ධ වන්න">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35" height="35">
     </a>
+
 <!-- Chatbase AI Chatbot Widget -->
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="OVkvFEdm5ygFboPiZNRSj";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
