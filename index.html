@@ -3,29 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodrigo Digital Systems</title>
+    <title>Rodrigo Digital Systems - Dashboard</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #87CEEB; color: #333; padding: 25px; min-height: 100vh; }
         
-        /* දීප්තිමත් Sky Blue පසුබිම */
-        body { 
-            background-color: #87CEEB; 
-            color: #333; 
-            padding: 25px;
-            min-height: 100vh;
+        .dashboard-frame { 
+            background-color: #e0f2fe; 
+            border: 18px solid #01579b; 
+            border-radius: 25px; 
+            box-shadow: inset 0px 18px 45px rgba(0,0,0,0.7), 0px 20px 40px rgba(0,0,0,0.4); 
+            overflow: hidden; 
+            padding-bottom: 25px; 
         }
 
-        /* ඩෑෂ්බෝඩ් එක තවත් ගොඩක් ඇතුළට ගිලුණු (Deep Box Frame) ස්වභාවය */
-        .dashboard-frame {
-            background-color: #e0f2fe;
-            border: 18px solid #01579b;
-            border-radius: 25px;
-            box-shadow: inset 0px 18px 45px rgba(0,0,0,0.7), 0px 20px 40px rgba(0,0,0,0.4);
-            overflow: hidden;
-            padding-bottom: 25px;
-        }
-
-        /* අඟල් 2ක් පමණ මහත, 3D Header එක */
         header { 
             background: linear-gradient(135deg, #f39c12, #f1c40f); 
             min-height: 110px; 
@@ -34,179 +25,248 @@
             justify-content: space-between; 
             align-items: center; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
-            border-bottom: 5px solid #d35400;
-            position: relative;
-            z-index: 10;
+            border-bottom: 5px solid #d35400; 
         }
 
         .logo-container { display: flex; align-items: center; gap: 20px; width: 100%; justify-content: center; }
         .logo-container img { height: 65px; border-radius: 8px; box-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+        .logo-container h1 { font-size: 32px; color: #111; font-weight: 900; letter-spacing: 2px; text-align: center; text-shadow: 2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.25); }
+
+        .main-layout { display: flex; gap: 25px; padding: 25px; }
+
+        .sidebar { 
+            width: 270px; 
+            background: #ffffff; 
+            padding: 20px 15px; 
+            border-radius: 15px; 
+            box-shadow: inset 4px 4px 10px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.1); 
+            flex-shrink: 0; 
+        }
         
-        /* 3D කැටයම් සහිත ප්‍රධාන නම */
-        .logo-container h1 { 
-            font-size: 32px; 
-            color: #111; 
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-align: center;
-            text-shadow: 2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.25);
-        }
-
-        .main-layout {
-            display: flex;
-            gap: 25px;
-            padding: 25px;
-        }
-
-        /* වම්පස Sidebar එක */
-        .sidebar {
-            width: 270px;
-            background: #ffffff;
-            padding: 20px 15px;
-            border-radius: 15px;
-            box-shadow: inset 4px 4px 10px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.1);
-            flex-shrink: 0;
-        }
-
-        .sidebar h3 {
-            font-size: 19px;
-            margin-bottom: 18px;
-            color: #01579b;
-            text-align: center;
-            border-bottom: 3px solid #01579b;
-            padding-bottom: 8px;
-            text-transform: uppercase;
+        .sidebar h3 { 
+            font-size: 19px; 
+            margin-bottom: 18px; 
+            color: #01579b; 
+            text-align: center; 
+            border-bottom: 3px solid #01579b; 
+            padding-bottom: 8px; 
+            text-transform: uppercase; 
         }
 
         .sidebar ul { list-style: none; }
         .sidebar li { margin-bottom: 12px; }
-
-        /* අකුරු ගැඹුරට ඇතුළට නෙරා යන (Engraved) Links */
-        .sidebar a {
-            display: block;
-            padding: 12px 15px;
-            background: #e6f2ff;
-            color: #1a252f;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-            box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.85);
-            text-shadow: 1px 1px 1px #fff, -1px -1px 1px rgba(0,0,0,0.6);
-            transition: 0.2s;
+        
+        .sidebar a { 
+            display: block; 
+            padding: 12px 15px; 
+            background: #e6f2ff; 
+            color: #1a252f; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 10px; 
+            box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.85); 
+            text-shadow: 1px 1px 1px #fff, -1px -1px 1px rgba(0,0,0,0.6); 
+            transition: 0.2s; 
         }
 
-        .sidebar a:hover {
-            background: #0288d1;
-            color: #fff;
-            text-shadow: none;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.25);
+        .sidebar a:hover, .sidebar a.active { 
+            background: #0288d1; 
+            color: #fff; 
+            text-shadow: none; 
+            box-shadow: 0 5px 12px rgba(0,0,0,0.25); 
         }
 
         .content-area { flex-grow: 1; }
 
-        /* Developer Background Section (විශ්‍රාමික කෑල්ල ඉවත් කර ඇත) */
-        .developer-card {
-            background: #fff;
-            padding: 20px 25px;
+        .dev-info-card {
+            background: #ffffff;
+            padding: 20px;
             border-radius: 15px;
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 0 8px 20px rgba(0,0,0,0.15);
             margin-bottom: 25px;
-            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 6px solid #f39c12;
         }
 
-        .developer-card h3 { color: #2c3e50; margin-bottom: 10px; font-size: 20px; }
-        .developer-card p { color: #555; line-height: 1.6; font-size: 15px; margin-bottom: 15px; }
-        .badges-list { display: flex; gap: 10px; flex-wrap: wrap; }
-        
-        /* Embossed/3D Badges & Tokens */
-        .badge-item { 
-            background: #27ae60; 
-            color: #fff; 
-            padding: 7px 14px; 
-            border-radius: 20px; 
-            font-size: 13px; 
+        .dev-info-card h2 {
+            color: #01579b;
+            font-size: 22px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dev-info-card p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
             font-weight: bold;
-            box-shadow: inset 2px 2px 4px rgba(255,255,255,0.5), inset -2px -2px 4px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.2);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            font-size: 14px;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
-        /* Cards Grid */
-        .container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 22px; 
+        .badge-green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .badge-yellow { background: linear-gradient(135deg, #f1c40f, #f39c12); color: #000; }
+        .badge-blue { background: linear-gradient(135deg, #3498db, #2980b9); }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        .card { 
-            background: #fff; 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 0 8px 20px rgba(0,0,0,0.15); 
-            transition: transform 0.3s, box-shadow 0.3s; 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
-
-        /* Embossed Number Token */
-        .card-badge { 
-            position: absolute; 
-            top: 12px; 
-            left: 12px; 
-            background: linear-gradient(145deg, #2c3e50, #1a252f); 
-            color: #fff; 
-            width: 32px; 
-            height: 32px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: bold; 
-            font-size: 14px; 
-            z-index: 2; 
-            box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.3);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        .system-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.8), 0 6px 15px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
         }
 
-        /* Embossed Tech Tag */
-        .tech-tag { 
-            position: absolute; 
-            top: 12px; 
-            right: 12px; 
-            background: linear-gradient(145deg, #27ae60, #1e8449); 
-            color: #fff; 
-            padding: 4px 10px; 
-            border-radius: 12px; 
-            font-size: 11px; 
-            font-weight: 700; 
-            z-index: 2; 
-            box-shadow: inset 2px 2px 3px rgba(255,255,255,0.4), inset -2px -2px 3px rgba(0,0,0,0.5), 0 3px 6px rgba(0,0,0,0.25);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        .system-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
         }
 
-        .card-img-container { width: 100%; height: 165px; overflow: hidden; background: #eef2f5; }
-        .card-img-container img { width: 100%; height: 100%; object-fit: cover; }
-
-        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-body h3 { font-size: 18px; color: #2c3e50; margin-bottom: 8px; }
-        .card-body p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
-
-        /* Embossed Button */
-        .btn { 
-            display: block; 
-            text-align: center; 
-            background: linear-gradient(145deg, #f39c12, #d35400); 
-            color: #fff; 
-            padding: 10px; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            transition: 0.3s; 
-            box-shadow: inset 2px 2px 3px rgba(255,255,255,0.4), inset -2px -2px 3px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        .system-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 3px solid #0288d1;
         }
-        .btn:hover { background: linear-gradient(145deg, #e67e22, #a04000); }
+
+        .system-card-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .system-card-content h3 {
+            color: #01579b;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .system-card-content p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 0 8px 20px rgba(0,0,0,0.15);
+            margin-top: 25px;
+        }
+
+        .contact-section h2 {
+            color: #01579b;
+            font-size: 22px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #0288d1;
+        }
+
+        .btn-submit {
+            background: linear-gradient(145deg, #0288d1, #01579b);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(145deg, #01579b, #002f6c);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
 
         footer { text-align: center; padding: 20px; color: #444; font-size: 14px; margin-top: 20px; font-weight: 600; }
     </style>
@@ -214,7 +274,6 @@
 <body>
 
     <div class="dashboard-frame">
-        <!-- Header -->
         <header>
             <div class="logo-container">
                 <img src="images/logo.png" alt="RDS Logo" onerror="this.style.display='none'">
@@ -222,10 +281,7 @@
             </div>
         </header>
 
-        <!-- Main Layout -->
         <div class="main-layout">
-            
-            <!-- Sidebar -->
             <aside class="sidebar">
                 <h3>ප්‍රධාන මාතෘකා</h3>
                 <ul>
@@ -239,107 +295,98 @@
                 </ul>
             </aside>
 
-            <!-- Main Content Area -->
             <main class="content-area">
-                
-                <!-- Developer Background Section -->
-                <section class="developer-card">
-                    <h3>🏆 මෘදුකාංග නිර්මාණකරුගේ පසුබිම (Developer Background)</h3>
-                    <p>වසර 35කට අධික ප්‍රායෝගික රාජ්‍ය සේවා පළපුරුද්ද සහිත ග්‍රාම නිලධාරීවරයෙකු විසින් මෙම පද්ධති සැලසුම් කර ඇත. වසර 18ක් පුරා ග්‍රාම නිලධාරී දත්ත පද්ධති යාවත්කාලීන කරමින් ලබාගත් පරිපූර්ණ දැනුම මෙයට යොදාගෙන තිබේ.</p>
-                    <div class="badges-list">
-                        <span class="badge-item">🏅 2010-2011 ග්‍රාම නිලධාරී කාර්යාල කළමනාකරණ තරගය - සමස්ත ශ්‍රී ලංකා 03 වන ස්ථානය</span>
-                        <span class="badge-item">🎖️ ජනාධිපති විශේෂ කුසලතා සම්මාන ලාභී</span>
-                        <span class="badge-item">⭐ වසර 35+ ක්ෂේත්‍ර පළපුරුද්ද</span>
+                <!-- Developer Background Card -->
+                <div class="dev-info-card">
+                    <h2>🏆 මෘදුකාංග නිර්මාණකරුගේ පසුබිම (Developer Background)</h2>
+                    <p>
+                        වසර 35කට අධික ප්‍රායෝගික රාජ්‍ය සේවා පළපුරුද්ද සහිත ග්‍රාම නිලධාරීවරයෙකු විසින් මෙම පද්ධති සැලසුම් කර ඇත. 
+                        වසර 18ක් පුරා ග්‍රාම නිලධාරී දත්ත පද්ධති යාවත්කාලීන කරමින් ලබාගත් පරිපූර්ණ දැනුම මෙයට යොදාගෙන තිබේ.
+                    </p>
+                    <div class="badges-container">
+                        <span class="badge badge-green">🏆 2010-2011 ග්‍රාම නිලධාරී කාර්යාල කළමනාකරණ තරඟය - සමස්ත ශ්‍රී ලංකා 03 වන ස්ථානය</span>
+                        <span class="badge badge-yellow">🏅 ජනාධිපති විශේෂ කුසලතා සම්මාන ලාභී</span>
+                        <span class="badge badge-blue">⭐ වසර 35+ ක්ෂේත්‍ර පළපුරුද්ද</span>
                     </div>
-                </section>
+                </div>
 
-                <!-- Cards Grid -->
-                <div class="container">
-
-                    <!-- Card 1 -->
-                    <div class="card">
-                        <div class="card-badge">1</div>
-                        <div class="tech-tag">SQLite</div>
-                        <div class="card-img-container"><img src="images/gn-app.png" alt="GN Database App"></div>
-                        <div class="card-body">
-                            <h3>GN Database App</h3>
-                            <p>ග්‍රාම නිලධාරී වසමේ කළමනාකරණය සඳහා නිර්මාණය කරන ලද පරිපූර්ණ පද්ධතිය.</p>
-                            <a href="gn-app.html" class="btn">විස්තර බලන්න</a>
+                <!-- Systems Grid -->
+                <div class="systems-grid">
+                    <a href="gn-app.html" class="system-card">
+                        <img src="images/gn-app.png" alt="GN Database App" onerror="this.src='https://via.placeholder.com/300x180?text=GN+Database+App'">
+                        <div class="system-card-content">
+                            <h3>1. GN Database App</h3>
+                            <p>ග්‍රාම නිලධාරී වසමේ කළමනාකරණය සඳහා නිකුත් කරන ලද පරිපූර්ණ පද්ධතිය.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Card 2 -->
-                    <div class="card">
-                        <div class="card-badge">2</div>
-                        <div class="tech-tag">MySQL Server</div>
-                        <div class="card-img-container"><img src="images/preschool.png" alt="Preschool Manager Pro"></div>
-                        <div class="card-body">
-                            <h3>Preschool Manager Pro</h3>
-                            <p>පෙරපාසල් ළමුන්ගේ සහ ගුරු මණ්ඩලයේ තොරතුරු කළමනාකරණය කිරීමේ පද්ධතිය.</p>
-                            <a href="preschool.html" class="btn">විස්තර බලන්න</a>
+                    <a href="preschool.html" class="system-card">
+                        <img src="images/preschool.png" alt="Preschool Manager Pro" onerror="this.src='https://via.placeholder.com/300x180?text=Preschool+Manager'">
+                        <div class="system-card-content">
+                            <h3>2. Preschool Manager Pro</h3>
+                            <p>පෙරපාසල් ළමුන්ගේ සහ ගුරු මණ්ඩලයේ තොරතුරු පහසුවෙන් කළමනාකරණය කිරීමේ පද්ධතිය.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Card 3 -->
-                    <div class="card">
-                        <div class="card-badge">3</div>
-                        <div class="tech-tag">MySQL Server</div>
-                        <div class="card-img-container"><img src="images/library.png" alt="Library Management System"></div>
-                        <div class="card-body">
-                            <h3>Library Management System</h3>
+                    <a href="library.html" class="system-card">
+                        <img src="images/library.png" alt="Library Management System" onerror="this.src='https://via.placeholder.com/300x180?text=Library+System'">
+                        <div class="system-card-content">
+                            <h3>3. Library Management System</h3>
                             <p>පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පාලනය කිරීමේ පද්ධතිය.</p>
-                            <a href="library.html" class="btn">විස්තර බලන්න</a>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Card 4 -->
-                    <div class="card">
-                        <div class="card-badge">4</div>
-                        <div class="tech-tag">MySQL / SQLite</div>
-                        <div class="card-img-container"><img src="images/ayurveda.png" alt="Ayurveda Center Pro"></div>
-                        <div class="card-body">
-                            <h3>Ayurveda Center Pro</h3>
-                            <p>ආයුර්වේද මධ්‍යස්ථාන සඳහා වන රෝගීන්ගේ සහ ඖෂධ කළමනාකරණ පද්ධතිය.</p>
-                            <a href="ayurveda.html" class="btn">විස්තර බලන්න</a>
+                    <a href="ayurveda.html" class="system-card">
+                        <img src="images/ayurveda.png" alt="Ayurveda Center Pro" onerror="this.src='https://via.placeholder.com/300x180?text=Ayurveda+Center'">
+                        <div class="system-card-content">
+                            <h3>4. Ayurveda Center Pro</h3>
+                            <p>ආයුර්වේද මධ්‍යස්ථාන සඳහා රෝගීන් සහ ඖෂධ කළමනාකරණ පද්ධතිය.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Card 5 -->
-                    <div class="card">
-                        <div class="card-badge">5</div>
-                        <div class="tech-tag">MySQL Server</div>
-                        <div class="card-img-container"><img src="images/prison.png" alt="Prison Pro"></div>
-                        <div class="card-body">
-                            <h3>Prison Pro</h3>
-                            <p>බන්ධනාගාර තොරතුරු සහ රඳවා තැබීම් කළමනාකරණය සඳහා වන විශේෂිත පද්ධතිය.</p>
-                            <a href="prison.html" class="btn">විස්තර බලන්න</a>
+                    <a href="prison.html" class="system-card">
+                        <img src="images/prison.png" alt="Prison Pro" onerror="this.src='https://via.placeholder.com/300x180?text=Prison+Pro'">
+                        <div class="system-card-content">
+                            <h3>5. Prison Pro</h3>
+                            <p>බන්ධනාගාර රැඳවියන්ගේ තොරතුරු පහසුවෙන් කළමනාකරණය කිරීමේ පද්ධතිය.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Card 6 -->
-                    <div class="card">
-                        <div class="card-badge">6</div>
-                        <div class="tech-tag">SQLite</div>
-                        <div class="card-img-container"><img src="images/swara.png" alt="Swara Sangeetha Studio"></div>
-                        <div class="card-body">
-                            <h3>Swara Sangeetha Studio</h3>
-                            <p>සංගීත පන්ති සහ ශිෂ්‍ය තොරතුරු පාලනය සඳහා වන මෘදුකාංගය.</p>
-                            <a href="swara.html" class="btn">විස්තර බලන්න</a>
+                    <a href="swara.html" class="system-card">
+                        <img src="images/swara.png" alt="Swara Sangeetha Studio" onerror="this.src='https://via.placeholder.com/300x180?text=Swara+Studio'">
+                        <div class="system-card-content">
+                            <h3>6. Swara Sangeetha Studio</h3>
+                            <p>සංගීත පන්ති සහ ශිෂ්‍ය තොරතුරු පාලනය කිරීමේ පද්ධතිය.</p>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Card 7 -->
-                    <div class="card">
-                        <div class="card-badge">7</div>
-                        <div class="tech-tag">MySQL / SQLite</div>
-                        <div class="card-img-container"><img src="images/shop-system.png" alt="Shop System"></div>
-                        <div class="card-body">
-                            <h3>Shop & POS System</h3>
-                            <p>වෙළඳසැල් සඳහා වන භාණ්ඩ තොග පාලන සහ බිල්පත් නිකුත් කිරීමේ පද්ධතිය.</p>
-                            <a href="shop.html" class="btn">විස්තර බලන්න</a>
+                    <a href="shop.html" class="system-card">
+                        <img src="images/shop.png" alt="Shop & POS System" onerror="this.src='https://via.placeholder.com/300x180?text=Shop+%26+POS'">
+                        <div class="system-card-content">
+                            <h3>7. Shop & POS System</h3>
+                            <p>ව්‍යාපාරික ස්ථාන සඳහා පරිපූර්ණ විකුණුම් සහ තොග පාලන පද්ධතිය.</p>
                         </div>
-                    </div>
+                    </a>
+                </div>
 
+                <!-- Contact / Inquiry Form Section -->
+                <div class="contact-section">
+                    <h2>📞 අප හා සම්බන්ධ වන්න / විමසීම් (Contact & Inquiries)</h2>
+                    <form class="contact-form" action="https://formspree.io/f/xanyzbqy" method="POST">
+                        <div class="form-group">
+                            <label>ඔබගේ නම (Your Name):</label>
+                            <input type="text" name="name" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
+                        </div>
+                        <div class="form-group">
+                            <label>දුරකථන අංකය (Phone Number):</label>
+                            <input type="tel" name="phone" placeholder="07X XXXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>අවශ්‍ය මෘදුකාංගය / විමසීම (Selected System / Inquiry):</label>
+                            <textarea name="message" rows="4" placeholder="ඔබට අවශ්‍ය තොරතුරු හෝ පණිවිඩය මෙහි සටහන් කරන්න..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">📤 පණිවිඩය යවන්න (Send Message)</button>
+                    </form>
                 </div>
             </main>
         </div>
@@ -348,6 +395,13 @@
             <p>&copy; 2026 Rodrigo Digital Systems. All Rights Reserved.</p>
         </footer>
     </div>
+
+    <!-- Floating WhatsApp Button -->
+    <!-- සටහන: ඔබගේ WhatsApp දුරකථන අංකය අනුව 94700000000 අංකය වෙනස් කරගන්න -->
+    <a href="https://wa.me/94700000000?text=Hello!%20I%20am%20interested%20in%20Rodrigo%20Digital%20Systems." 
+       class="whatsapp-float" target="_blank" title="WhatsApp හරහා සම්බන්ධ වන්න">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35" height="35">
+    </a>
 
 </body>
 </html>
