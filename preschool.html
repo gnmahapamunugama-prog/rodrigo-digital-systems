@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preschool Manager Pro - Rodrigo Digital Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(135deg, #f39c12, #f1c40f, #f39c12);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+        .logo-container h1 {
+            font-size: 24px;
+            color: #000;
+            font-weight: 800;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a:hover {
+            background: #2c3e50;
+            color: #fff;
+        }
+        
+        .main-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .title-section {
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-section h2 {
+            color: #2c3e50;
+            font-size: 28px;
+        }
+        .badge {
+            background: #0288d1;
+            color: #fff;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .app-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .feature-box {
+            background: #f8f9fa;
+            border-left: 4px solid #f39c12;
+            padding: 18px;
+            border-radius: 6px;
+        }
+        .feature-box h4 {
+            color: #d35400;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .feature-box p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #0288d1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #01579b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="RDS Logo">
+            <h1>RODRIGO DIGITAL SYSTEMS</h1>
+        </div>
+        <nav>
+            <a href="index.html">🏠 මුල් පිටුවට (Home)</a>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="title-section">
+            <h2>Preschool Manager Pro</h2>
+            <span class="badge">MySQL Server</span>
+        </div>
+
+        <img src="images/preschool.png" alt="Preschool Manager Pro" class="app-img">
+
+        <div class="description">
+            <p>පෙරපාසල් සහ පෙරපාසල් දරුවන්ගේ තොරතුරු, ගුරු මණ්ඩලය, ගාස්තු (Fees) සහ පැමිණීම් පහසුවෙන් සහ නිවැරදිව කළමනාකරණය කිරීම සඳහා නිර්මාණය කරන ලද විශේෂිත මෘදුකාංග පද්ධතියකි. මෙය පෙරපාසල් පාලනය ඉතා කාර්යක්ෂම කරයි.</p>
+        </div>
+
+        <h3>ප්‍රධාන විශේෂාංග (Key Features):</h3>
+        <br>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <h4>👶 ළමුන්ගේ දත්ත කළමනාකරණය</h4>
+                <p>ඇතුළත් කරගත් ළමුන්ගේ සහ දෙමාපියන්ගේ සියලුම තොරතුරු ආරක්ෂිතව පවත්වා ගැනීම.</p>
+            </div>
+            <div class="feature-box">
+                <h4>💰 ගාස්තු ගෙවීම් (Fee Management)</h4>
+                <p>මාසික ගාස්තු, ලියාපදිංචි ගාස්තු සහ රිසිට්පත් කඩිනමින් නිකුත් කිරීමේ පහසුකම.</p>
+            </div>
+            <div class="feature-box">
+                <h4>📅 පැමිණීම සටහන් කිරීම</h4>
+                <p>දිනපතා ළමුන්ගේ පැමිණීම් සහ නිවාඩු වාර්තා පහසුවෙන් සටහන් කිරීම.</p>
+            </div>
+            <div class="feature-box">
+                <h4>📑 වාර්තා ලබා ගැනීම</h4>
+                <p>මාසික ආදායම් වාර්තා සහ ළමුන්ගේ ලේඛන ක්ෂණිකව Print කර ගැනීමේ පහසුකම.</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-btn">⬅️ මුල් පිටුවට යන්න</a>
+    </div>
+
+</body>
+</html>
