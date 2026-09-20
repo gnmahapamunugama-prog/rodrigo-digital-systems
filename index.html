@@ -7,24 +7,25 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* දීප්තිමත් Sky Blue පසුබිම සහ ඇතුළට ගිලුණු Deep Box Frame එක */
+        /* දීප්තිමත් Sky Blue පසුබිම */
         body { 
             background-color: #87CEEB; 
             color: #333; 
-            padding: 20px;
+            padding: 25px;
             min-height: 100vh;
         }
 
+        /* ඩෑෂ්බෝඩ් එක තවත් ගොඩක් ඇතුළට ගිලුණු (Deep Box Frame) ස්වභාවය */
         .dashboard-frame {
             background-color: #e0f2fe;
-            border: 12px solid #0288d1;
-            border-radius: 20px;
-            box-shadow: inset 0px 10px 25px rgba(0,0,0,0.5), 0px 15px 30px rgba(0,0,0,0.3);
+            border: 18px solid #01579b;
+            border-radius: 25px;
+            box-shadow: inset 0px 18px 45px rgba(0,0,0,0.7), 0px 20px 40px rgba(0,0,0,0.4);
             overflow: hidden;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
         }
 
-        /* අඟල් 2ක් පමණ මහත, ඉදිරියට නෙරා එන 3D Header එක */
+        /* අඟල් 2ක් පමණ මහත, 3D Header එක */
         header { 
             background: linear-gradient(135deg, #f39c12, #f1c40f); 
             min-height: 110px; 
@@ -33,7 +34,7 @@
             justify-content: space-between; 
             align-items: center; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
-            border-bottom: 4px solid #d35400;
+            border-bottom: 5px solid #d35400;
             position: relative;
             z-index: 10;
         }
@@ -41,56 +42,56 @@
         .logo-container { display: flex; align-items: center; gap: 20px; width: 100%; justify-content: center; }
         .logo-container img { height: 65px; border-radius: 8px; box-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
         
-        /* 3D කැටයම් සහිත මැදට කළ ප්‍රධාන නම */
+        /* 3D කැටයම් සහිත ප්‍රධාන නම */
         .logo-container h1 { 
             font-size: 32px; 
             color: #111; 
             font-weight: 900;
             letter-spacing: 2px;
             text-align: center;
-            text-shadow: 2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.25);
         }
 
-        /* Layout Container (Sidebar + Main Content) */
         .main-layout {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             padding: 25px;
         }
 
-        /* වම්පස තීරුව (Sidebar) */
+        /* වම්පස Sidebar එක */
         .sidebar {
-            width: 260px;
+            width: 270px;
             background: #ffffff;
             padding: 20px 15px;
-            border-radius: 12px;
-            box-shadow: inset 3px 3px 8px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: inset 4px 4px 10px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.1);
             flex-shrink: 0;
         }
 
         .sidebar h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #0288d1;
+            font-size: 19px;
+            margin-bottom: 18px;
+            color: #01579b;
             text-align: center;
-            border-bottom: 2px solid #0288d1;
+            border-bottom: 3px solid #01579b;
             padding-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .sidebar ul { list-style: none; }
         .sidebar li { margin-bottom: 12px; }
 
-        /* අකුරු ගැඹුරට ඇතුළට නෙරා යන (Engraved) Effect එක සහිත Links */
+        /* අකුරු ගැඹුරට ඇතුළට නෙරා යන (Engraved) Links */
         .sidebar a {
             display: block;
-            padding: 10px 15px;
+            padding: 12px 15px;
             background: #e6f2ff;
-            color: #2c3e50;
+            color: #1a252f;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 8px;
-            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.8);
-            text-shadow: 1px 1px 1px #fff, -1px -1px 1px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.45), inset -3px -3px 6px rgba(255, 255, 255, 0.85);
+            text-shadow: 1px 1px 1px #fff, -1px -1px 1px rgba(0,0,0,0.6);
             transition: 0.2s;
         }
 
@@ -98,97 +99,116 @@
             background: #0288d1;
             color: #fff;
             text-shadow: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.25);
         }
 
-        /* දකුණු පස ප්‍රධාන කොටස */
         .content-area { flex-grow: 1; }
 
-        /* Developer Background Section */
+        /* Developer Background Section (විශ්‍රාමික කෑල්ල ඉවත් කර ඇත) */
         .developer-card {
             background: #fff;
             padding: 20px 25px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.15), 0 5px 15px rgba(0,0,0,0.1);
             border-left: 6px solid #f39c12;
         }
 
         .developer-card h3 { color: #2c3e50; margin-bottom: 10px; font-size: 20px; }
         .developer-card p { color: #555; line-height: 1.6; font-size: 15px; margin-bottom: 15px; }
         .badges-list { display: flex; gap: 10px; flex-wrap: wrap; }
-        .badge-item { background: #27ae60; color: #fff; padding: 6px 12px; border-radius: 15px; font-size: 13px; font-weight: bold; }
+        
+        /* Embossed/3D Badges & Tokens */
+        .badge-item { 
+            background: #27ae60; 
+            color: #fff; 
+            padding: 7px 14px; 
+            border-radius: 20px; 
+            font-size: 13px; 
+            font-weight: bold;
+            box-shadow: inset 2px 2px 4px rgba(255,255,255,0.5), inset -2px -2px 4px rgba(0,0,0,0.4), 0 3px 6px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
 
         /* Cards Grid */
         .container { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; 
+            gap: 22px; 
         }
 
         .card { 
             background: #fff; 
-            border-radius: 12px; 
+            border-radius: 15px; 
             overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.8), 0 8px 20px rgba(0,0,0,0.15); 
             transition: transform 0.3s, box-shadow 0.3s; 
             position: relative; 
             display: flex; 
             flex-direction: column; 
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
 
+        /* Embossed Number Token */
         .card-badge { 
             position: absolute; 
             top: 12px; 
             left: 12px; 
-            background: rgba(0, 0, 0, 0.8); 
+            background: linear-gradient(145deg, #2c3e50, #1a252f); 
             color: #fff; 
-            width: 26px; 
-            height: 26px; 
+            width: 32px; 
+            height: 32px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: bold; 
-            font-size: 13px; 
+            font-size: 14px; 
             z-index: 2; 
+            box-shadow: inset 2px 2px 4px rgba(255,255,255,0.4), inset -2px -2px 4px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
         }
 
+        /* Embossed Tech Tag */
         .tech-tag { 
             position: absolute; 
             top: 12px; 
             right: 12px; 
-            background: #27ae60; 
+            background: linear-gradient(145deg, #27ae60, #1e8449); 
             color: #fff; 
-            padding: 3px 8px; 
-            border-radius: 10px; 
+            padding: 4px 10px; 
+            border-radius: 12px; 
             font-size: 11px; 
-            font-weight: 600; 
+            font-weight: 700; 
             z-index: 2; 
+            box-shadow: inset 2px 2px 3px rgba(255,255,255,0.4), inset -2px -2px 3px rgba(0,0,0,0.5), 0 3px 6px rgba(0,0,0,0.25);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
         }
 
-        .card-img-container { width: 100%; height: 160px; overflow: hidden; background: #eef2f5; }
+        .card-img-container { width: 100%; height: 165px; overflow: hidden; background: #eef2f5; }
         .card-img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
         .card-body h3 { font-size: 18px; color: #2c3e50; margin-bottom: 8px; }
-        .card-body p { font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 15px; flex-grow: 1; }
+        .card-body p { font-size: 13px; color: #666; line-height: 1.5; margin-bottom: 15px; flex-grow: 1; }
 
+        /* Embossed Button */
         .btn { 
             display: block; 
             text-align: center; 
-            background: #f39c12; 
+            background: linear-gradient(145deg, #f39c12, #d35400); 
             color: #fff; 
-            padding: 8px; 
-            border-radius: 6px; 
+            padding: 10px; 
+            border-radius: 8px; 
             text-decoration: none; 
             font-weight: bold; 
             transition: 0.3s; 
+            box-shadow: inset 2px 2px 3px rgba(255,255,255,0.4), inset -2px -2px 3px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
-        .btn:hover { background: #e67e22; }
+        .btn:hover { background: linear-gradient(145deg, #e67e22, #a04000); }
 
-        footer { text-align: center; padding: 20px; color: #555; font-size: 14px; margin-top: 20px; font-weight: 600; }
+        footer { text-align: center; padding: 20px; color: #444; font-size: 14px; margin-top: 20px; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -225,7 +245,7 @@
                 <!-- Developer Background Section -->
                 <section class="developer-card">
                     <h3>🏆 මෘදුකාංග නිර්මාණකරුගේ පසුබිම (Developer Background)</h3>
-                    <p>වසර 35කට අධික ප්‍රායෝගික රාජ්‍ය සේවා පළපුරුද්ද සහිත විශ්‍රාමික ග්‍රාම නිලධාරීවරයෙකු විසින් මෙම පද්ධති සැලසුම් කර ඇත. වසර 18ක් පුරා ග්‍රාම නිලධාරී දත්ත පද්ධති යාවත්කාලීන කරමින් ලබාගත් පරිපූර්ණ දැනුම මෙයට යොදාගෙන තිබේ.</p>
+                    <p>වසර 35කට අධික ප්‍රායෝගික රාජ්‍ය සේවා පළපුරුද්ද සහිත ග්‍රාම නිලධාරීවරයෙකු විසින් මෙම පද්ධති සැලසුම් කර ඇත. වසර 18ක් පුරා ග්‍රාම නිලධාරී දත්ත පද්ධති යාවත්කාලීන කරමින් ලබාගත් පරිපූර්ණ දැනුම මෙයට යොදාගෙන තිබේ.</p>
                     <div class="badges-list">
                         <span class="badge-item">🏅 2010-2011 ග්‍රාම නිලධාරී කාර්යාල කළමනාකරණ තරගය - සමස්ත ශ්‍රී ලංකා 03 වන ස්ථානය</span>
                         <span class="badge-item">🎖️ ජනාධිපති විශේෂ කුසලතා සම්මාන ලාභී</span>
