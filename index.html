@@ -40,6 +40,10 @@
             color: #000;
             font-weight: 800;
         }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
         nav a {
             text-decoration: none;
             color: #333;
@@ -49,13 +53,6 @@
             font-weight: 600;
             font-size: 14px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: block;
         }
 
         .hero {
@@ -69,6 +66,12 @@
             font-size: 32px;
             color: #2c3e50;
             margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 16px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .container {
@@ -105,6 +108,7 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 14px;
             z-index: 10;
         }
         .tech-tag {
@@ -125,6 +129,7 @@
         .card-img-container {
             width: 100%;
             height: 200px;
+            overflow: hidden;
             background: #eef2f5;
         }
         .card-img-container img {
@@ -144,6 +149,13 @@
             color: #2c3e50;
             margin-bottom: 10px;
         }
+        .card-body p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
         .btn {
             display: block;
             text-align: center;
@@ -153,56 +165,9 @@
             padding: 10px;
             border-radius: 6px;
             font-weight: bold;
-            cursor: pointer;
-            border: none;
-            width: 100%;
         }
-
-        /* Detail Page Styling */
-        .detail-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-        .title-section {
-            border-bottom: 3px solid #f39c12;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .app-img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px 0 30px 0;
-        }
-        .feature-box {
-            background: #f8f9fa;
-            border-left: 4px solid #f39c12;
-            padding: 18px;
-            border-radius: 6px;
-        }
-        .back-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: #0288d1;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
+        .btn:hover {
+            background: #d35400;
         }
 
         footer {
@@ -210,6 +175,7 @@
             padding: 20px;
             background: #2c3e50;
             color: #fff;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -221,190 +187,102 @@
             <h1>RODRIGO DIGITAL SYSTEMS</h1>
         </div>
         <nav>
-            <a href="javascript:void(0)" onclick="showPage('home')">🏠 මුල් පිටුව</a>
+            <a href="index.html">🏠 මුල් පිටුව</a>
         </nav>
     </header>
 
-    <!-- HOME PAGE -->
-    <div id="home" class="page active">
-        <div class="hero">
-            <h2>අපගේ මෘදුකාංග පද්ධති (Software Solutions)</h2>
-            <p>ආයතනික සහ රාජ්‍ය අංශයේ කාර්යක්ෂමතාව ඉහළ නැංවීම සඳහා නිර්මාණය කරන ලද නවීන මෘදුකාංග විසඳුම්.</p>
-        </div>
-
-        <div class="container">
-            <div class="card-grid">
-
-                <div class="card">
-                    <div class="badge">1</div>
-                    <div class="tech-tag sqlite">SQLite</div>
-                    <div class="card-img-container"><img src="images/gn-app.png" alt="GN App"></div>
-                    <div class="card-body">
-                        <h3>GN Database App</h3>
-                        <p>ග්‍රාම නිලධාරී වසම් කළමනාකරණ පද්ධතිය.</p><br>
-                        <button class="btn" onclick="showPage('gn')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="badge">2</div>
-                    <div class="tech-tag mysql">MySQL Server</div>
-                    <div class="card-img-container"><img src="images/preschool.png" alt="Preschool Pro"></div>
-                    <div class="card-body">
-                        <h3>Preschool Manager Pro</h3>
-                        <p>පෙරපාසල් දත්ත කළමනාකරණ පද්ධතිය.</p><br>
-                        <button class="btn" onclick="showPage('preschool')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="badge">3</div>
-                    <div class="tech-tag mysql">MySQL Server</div>
-                    <div class="card-img-container"><img src="images/library.png" alt="Library"></div>
-                    <div class="card-body">
-                        <h3>Library Management System</h3>
-                        <p>පුස්තකාල පාලන පද්ධතිය.</p><br>
-                        <button class="btn" onclick="showPage('library')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="badge">4</div>
-                    <div class="tech-tag mysql">MySQL Server</div>
-                    <div class="card-img-container"><img src="images/ayurveda.png" alt="Ayurveda"></div>
-                    <div class="card-body">
-                        <h3>Ayurvedic Center System</h3>
-                        <p>ආයුර්වේද වෛද්‍ය මධ්‍යස්ථාන පද්ධතිය.</p><br>
-                        <button class="btn" onclick="showPage('ayurveda')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="badge">5</div>
-                    <div class="tech-tag mysql">MySQL Server</div>
-                    <div class="card-img-container"><img src="images/prison.png" alt="Prison"></div>
-                    <div class="card-body">
-                        <h3>Tharushi Prison Management</h3>
-                        <p>බන්ධනාගාර දත්ත පාලන පද්ධතිය.</p><br>
-                        <button class="btn" onclick="showPage('prison')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="badge">6</div>
-                    <div class="tech-tag python">Python AI</div>
-                    <div class="card-img-container"><img src="images/swara.png" alt="Swara OCR"></div>
-                    <div class="card-body">
-                        <h3>Swara Voice & Text OCR</h3>
-                        <p>සිංහල හඬ සහ ඡායාරූප අකුරු බවට පත්කිරීම.</p><br>
-                        <button class="btn" onclick="showPage('swara')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="badge">7</div>
-                    <div class="tech-tag sqlite">MySQL / SQLite</div>
-                    <div class="card-img-container"><img src="images/shop.png" alt="Shop System"></div>
-                    <div class="card-body">
-                        <h3>Shop & POS System</h3>
-                        <p>වෙළඳසැල් POS සහ Inventory පද්ධතිය.</p><br>
-                        <button class="btn" onclick="showPage('shop')">විස්තර බලන්න</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <div class="hero">
+        <h2>අපගේ මෘදුකාංග පද්ධති (Software Solutions)</h2>
+        <p>ආයතනික සහ රාජ්‍ය අංශයේ කාර්යක්ෂමතාව ඉහළ නැංවීම සඳහා නිර්මාණය කරන ලද නවීන මෘදුකාංග විසඳුම්.</p>
     </div>
 
-    <!-- DETAIL PAGES -->
-    <div id="gn" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>GN Database App</h2><span class="tech-tag sqlite">SQLite</span></div>
-            <img src="images/gn-app.png" class="app-img">
-            <p>ග්‍රාම නිලධාරී වසමේ සියලුම පවුල් සංඛ්‍යාලේඛන සහ වාර්තා පහසුවෙන් පවත්වා ගැනීමට සකස් කළ පද්ධතිය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>🏡 පවුල් ලේඛන</h4><p>පුද්ගලික දත්ත ගබඩාව.</p></div>
-                <div class="feature-box"><h4>📄 සහතික නිකුත් කිරීම</h4><p>ක්ලෝන සහ නිල සහතික මුද්‍රණය.</p></div>
-            </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
-        </div>
-    </div>
+    <div class="container">
+        <div class="card-grid">
 
-    <div id="preschool" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>Preschool Manager Pro</h2><span class="tech-tag mysql">MySQL</span></div>
-            <img src="images/preschool.png" class="app-img">
-            <p>පෙරපාසල් ළමුන්ගේ දත්ත සහ ගාස්තු (Fees) කළමනාකරණය සඳහා විශේෂිත පද්ධතිය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>👶 ළමුන්ගේ දත්ත</h4><p>දෙමාපිය සහ ළමා තොරතුරු.</p></div>
-                <div class="feature-box"><h4>💰 ගෙවීම් පාලනය</h4><p>මාසික Fees සහ රිසිට්පත් නිකුත් කිරීම.</p></div>
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="badge">1</div>
+                <div class="tech-tag sqlite">SQLite</div>
+                <div class="card-img-container"><img src="images/gn-app.png" alt="GN App"></div>
+                <div class="card-body">
+                    <h3>GN Database App</h3>
+                    <p>ග්‍රාම නිලධාරී වසම් කළමනාකරණය සඳහා නිර්මාණය කරන ලද පරිපූර්ණ පද්ධතිය.</p>
+                    <a href="gn-app.html" class="btn">විස්තර බලන්න</a>
+                </div>
             </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
-        </div>
-    </div>
 
-    <div id="library" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>Library Management System</h2><span class="tech-tag mysql">MySQL</span></div>
-            <img src="images/library.png" class="app-img">
-            <p>පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පාලනය කිරීමේ පද්ධතිය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>📚 පොත් පාලනය</h4><p>පොත්පත් තොග සහ කතෘ විස්තර.</p></div>
-                <div class="feature-box"><h4>🔄 නිකුත් කිරීම්</h4><p>පොත් බාරදීම් සහ ප්‍රමාද ගාස්තු.</p></div>
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="badge">2</div>
+                <div class="tech-tag mysql">MySQL Server</div>
+                <div class="card-img-container"><img src="images/preschool.png" alt="Preschool Pro"></div>
+                <div class="card-body">
+                    <h3>Preschool Manager Pro</h3>
+                    <p>පෙරපාසල් ළමුන්ගේ සහ ගුරු මණ්ඩලයේ තොරතුරු කළමනාකරණය කිරීමේ පද්ධතිය.</p>
+                    <a href="preschool.html" class="btn">විස්තර බලන්න</a>
+                </div>
             </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
-        </div>
-    </div>
 
-    <div id="ayurveda" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>Ayurvedic Center System</h2><span class="tech-tag mysql">MySQL</span></div>
-            <img src="images/ayurveda.png" class="app-img">
-            <p>ආයුර්වේද වෛද්‍ය මධ්‍යස්ථාන සඳහා වන රෝගී සහ ඖෂධ කළමනාකරණ පද්ධතිය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>🩺 රෝගී ලියාපදිංචිය</h4><p>වෛද්‍ය වාර්තා සහ නිරීක්ෂණ.</p></div>
-                <div class="feature-box"><h4>🌿 ඖෂධ ගබඩාව</h4><p>Pharmacy Inventory පාලනය.</p></div>
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="badge">3</div>
+                <div class="tech-tag mysql">MySQL Server</div>
+                <div class="card-img-container"><img src="images/library.png" alt="Library"></div>
+                <div class="card-body">
+                    <h3>Library Management System</h3>
+                    <p>පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පාලනය කිරීමේ පද්ධතිය.</p>
+                    <a href="library.html" class="btn">විස්තර බලන්න</a>
+                </div>
             </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
-        </div>
-    </div>
 
-    <div id="prison" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>Tharushi Prison Management</h2><span class="tech-tag mysql">MySQL</span></div>
-            <img src="images/prison.png" class="app-img">
-            <p>බන්ධනාගාර රැඳවියන්ගේ සහ කාර්ය මණ්ඩලයේ තොරතුරු පාලන පද්ධතිය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>🔒 රැඳවියන්ගේ දත්ත</h4><p>සිරකරුවන්ගේ විස්තර සහ දඬුවම් කාලසීමා.</p></div>
-                <div class="feature-box"><h4>👥 නැරඹුම්කරුවන්</h4><p>පැමිණෙන්නන්ගේ ලේඛනය.</p></div>
+            <!-- Card 4 -->
+            <div class="card">
+                <div class="badge">4</div>
+                <div class="tech-tag mysql">MySQL Server</div>
+                <div class="card-img-container"><img src="images/ayurveda.png" alt="Ayurveda"></div>
+                <div class="card-body">
+                    <h3>Ayurvedic Center System</h3>
+                    <p>ආයුර්වේද වෛද්‍ය මධ්‍යස්ථාන සඳහා වන රෝගී සහ ඖෂධ කළමනාකරණ පද්ධතිය.</p>
+                    <a href="ayurveda.html" class="btn">විස්තර බලන්න</a>
+                </div>
             </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
-        </div>
-    </div>
 
-    <div id="swara" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>Swara Voice & Text OCR</h2><span class="tech-tag python">Python AI</span></div>
-            <img src="images/swara.png" class="app-img">
-            <p>සිංහල හඬ සහ ඡායාරූප අකුරු බවට පත් කරන AI තාක්ෂණික මෘදුකාංගය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>🎙️ Voice Typing</h4><p>කතා කරන වචන අකුරු බවට පරිවර්තනය.</p></div>
-                <div class="feature-box"><h4>📷 Image OCR</h4><p>ඡායාරූපවල ඇති අකුරු Editable Text කිරීම.</p></div>
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="badge">5</div>
+                <div class="tech-tag mysql">MySQL Server</div>
+                <div class="card-img-container"><img src="images/prison.png" alt="Prison"></div>
+                <div class="card-body">
+                    <h3>Tharushi Prison Management</h3>
+                    <p>බන්ධනාගාර රැඳවියන්ගේ සහ කාර්ය මණ්ඩලයේ තොරතුරු පාලන පද්ධතිය.</p>
+                    <a href="prison.html" class="btn">විස්තර බලන්න</a>
+                </div>
             </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
-        </div>
-    </div>
 
-    <div id="shop" class="page">
-        <div class="detail-container">
-            <div class="title-section"><h2>Shop & POS System</h2><span class="tech-tag sqlite">SQLite</span></div>
-            <img src="images/shop.png" class="app-img">
-            <p>වෙළඳසැල් සඳහා වන භාණ්ඩ තොග පාලන සහ බිල්පත් නිකුත් කිරීමේ පද්ධතිය.</p>
-            <div class="features-grid">
-                <div class="feature-box"><h4>🛒 POS Billing</h4><p>බාර්කෝඩ් බිල්පත් නිකුත් කිරීම.</p></div>
-                <div class="feature-box"><h4>📈 ලාභ අලාභ</h4><p>දෛනික සහ මාසික මූල්‍ය වාර්තා.</p></div>
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="badge">6</div>
+                <div class="tech-tag python">Python AI</div>
+                <div class="card-img-container"><img src="images/swara.png" alt="Swara OCR"></div>
+                <div class="card-body">
+                    <h3>Swara Voice & Text OCR</h3>
+                    <p>සිංහල හඬ සහ ඡායාරූප අකුරු බවට පත් කරන AI තාක්ෂණික මෘදුකාංගය.</p>
+                    <a href="swara.html" class="btn">විස්තර බලන්න</a>
+                </div>
             </div>
-            <button class="back-btn" onclick="showPage('home')">⬅️ මුල් පිටුවට යන්න</button>
+
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="badge">7</div>
+                <div class="tech-tag sqlite">MySQL / SQLite</div>
+                <div class="card-img-container"><img src="images/shop.png" alt="Shop System"></div>
+                <div class="card-body">
+                    <h3>Shop & POS System</h3>
+                    <p>වෙළඳසැල් සඳහා වන භාණ්ඩ තොග පාලන සහ බිල්පත් නිකුත් කිරීමේ පද්ධතිය.</p>
+                    <a href="shop.html" class="btn">විස්තර බලන්න</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -412,15 +290,5 @@
         <p>© 2026 Rodrigo Digital Systems. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        function showPage(pageId) {
-            var pages = document.querySelectorAll('.page');
-            pages.forEach(function(page) {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-        }
-    </script>
 </body>
 </html>
