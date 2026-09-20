@@ -332,6 +332,7 @@
                     <li><a href="prison.html">5. Prison Pro</a></li>
                     <li><a href="swara.html">6. Swara Studio</a></li>
                     <li><a href="shop.html">7. Shop & POS System</a></li>
+                    <li style="margin-top: 20px;"><a href="admin.html" target="_blank" style="background: #27ae60; color: #fff;">⚙️ Admin Dashboard</a></li>
                 </ul>
             </aside>
 
@@ -448,18 +449,18 @@
 
                 <div class="contact-section">
                     <h2>📞 අප හා සම්බන්ධ වන්න / විමසීම් (Contact & Inquiries)</h2>
-                    <form class="contact-form" action="https://formspree.io/f/xanyzbqy" method="POST">
+                    <form class="contact-form" id="inquiryForm" onsubmit="handleFormSubmit(event)">
                         <div class="form-group">
                             <label>ඔබගේ නම (Your Name):</label>
-                            <input type="text" name="name" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
+                            <input type="text" id="custName" placeholder="ඔබගේ නම ඇතුළත් කරන්න" required>
                         </div>
                         <div class="form-group">
-                            <label>දුරකථන අංකය (Phone Number):</label>
-                            <input type="tel" name="phone" placeholder="0710912960" required>
+                            <label>දුරකථන අංකය / WhatsApp (Phone Number):</label>
+                            <input type="tel" id="custPhone" placeholder="0710912960" required>
                         </div>
                         <div class="form-group">
                             <label>අවශ්‍ය පැකේජය / විමසීම (Selected Package / Inquiry):</label>
-                            <textarea name="message" rows="4" placeholder="ඔබට අවශ්‍ය පැකේජය හෝ විශේෂ ඉල්ලීම් මෙහි සටහන් කරන්න..." required></textarea>
+                            <textarea id="custMessage" rows="4" placeholder="ඔබට අවශ්‍ය පැකේජය හෝ විශේෂ ඉල්ලීම් මෙහි සටහන් කරන්න..." required></textarea>
                         </div>
                         <button type="submit" class="btn-submit">📤 පණිවිඩය යවන්න (Send Message)</button>
                     </form>
@@ -476,6 +477,35 @@
        class="whatsapp-float" target="_blank" title="WhatsApp හරහා සම්බන්ධ වන්න">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35" height="35">
     </a>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const message = document.getElementById('custMessage').value;
+
+            // Save to LocalStorage for Admin Dashboard
+            let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
+            const newEntry = {
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                message: message,
+                status: 'Pending',
+                date: new Date().toLocaleString()
+            };
+            inquiries.push(newEntry);
+            localStorage.setItem('rds_inquiries', JSON.stringify(inquiries));
+
+            // Redirect to Admin's WhatsApp with details
+            const waText = `New Inquiry!%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
+            window.open(`https://wa.me/94710912960?text=${waText}`, '_blank');
+
+            alert('ඔබගේ පණිවිඩය සාර්ථකව යොමු විය! අපගේ WhatsApp වෙත සම්බන්ධ වේ.');
+            document.getElementById('inquiryForm').reset();
+        }
+    </script>
 
 <!-- Chatbase AI Chatbot Widget -->
 <script>
