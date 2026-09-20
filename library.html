@@ -5,29 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System - RDS</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #f4f6f9; color: #333; }
-        header { background: linear-gradient(135deg, #f39c12, #f1c40f); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logo-container h1 { font-size: 22px; color: #000; }
-        nav a { text-decoration: none; color: #333; background: #fff; padding: 8px 18px; border-radius: 20px; font-weight: 600; }
+        header { background: linear-gradient(135deg, #f39c12, #f1c40f); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo-container h1 { font-size: 22px; color: #000; letter-spacing: 1px; }
+        nav a { text-decoration: none; color: #333; background: #fff; padding: 8px 18px; border-radius: 20px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { background: #333; color: #fff; }
         .detail-container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
         .title-section { border-bottom: 3px solid #f39c12; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .app-img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
-        .back-btn { display: inline-block; padding: 10px 20px; background: #0288d1; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; margin-top: 20px; }
+        .tech-badge { background: #0288d1; color: #fff; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 14px; }
+        .app-img { width: 100%; max-height: 450px; object-fit: contain; background: #eaedd9; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .desc { font-size: 16px; line-height: 1.6; color: #555; margin-bottom: 25px; }
+        .back-btn { display: inline-block; padding: 12px 25px; background: #333; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.3s; }
+        .back-btn:hover { background: #f39c12; color: #000; }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo-container"><h1>RODRIGO DIGITAL SYSTEMS</h1></div>
-        <nav><a href="index.html">🏠 මුල් පිටුව</a></nav>
+        <div class="logo-container">
+            <h1>RODRIGO DIGITAL SYSTEMS</h1>
+        </div>
+        <nav>
+            <a href="index.html">🏠 මුල් පිටුව</a>
+        </nav>
     </header>
+
     <div class="detail-container">
         <div class="title-section">
             <h2>Library Management System</h2>
-            <span style="background: #0288d1; color:#fff; padding: 4px 12px; border-radius: 15px; font-size: 12px;">MySQL Server</span>
+            <span class="tech-badge">MySQL Server</span>
         </div>
         <img src="images/library.png" class="app-img" alt="Library Management System">
-        <p>පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පරිපූර්ණ ලෙස කළමනාකරණය කිරීමේ පද්ධතිය.</p>
+        <p class="desc">පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පරිපූර්ණ ලෙස කළමනාකරණය කිරීමේ පද්ධතිය.</p>
         <a href="index.html" class="back-btn">⬅️ මුල් පිටුවට යන්න</a>
     </div>
 </body>
