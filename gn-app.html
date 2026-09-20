@@ -9,129 +9,187 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body {
-            background-color: #f4f7f6;
+            background-color: #f4f6f9;
             color: #333;
-            line-height: 1.6;
         }
         header {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #f39c12, #f1c40f, #f39c12);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+        .logo-container h1 {
+            font-size: 24px;
+            color: #000;
+            font-weight: 800;
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.30s;
+            color: #333;
+            background: #fff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .back-btn:hover {
-            background-color: #0056b3;
+        nav a:hover {
+            background: #2c3e50;
+            color: #fff;
         }
-        .system-card {
+        
+        .main-container {
+            max-width: 1000px;
+            margin: 40px auto;
             background: #fff;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
-        .system-img {
+        .title-section {
+            border-bottom: 3px solid #f39c12;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-section h2 {
+            color: #2c3e50;
+            font-size: 28px;
+        }
+        .badge {
+            background: #27ae60;
+            color: #fff;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .app-img {
             width: 100%;
             max-height: 400px;
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        h2 {
-            color: #2c5364;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #007bff;
-            display: inline-block;
-            padding-bottom: 5px;
+
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
         }
-        .features-list {
-            list-style-type: square;
-            margin-left: 20px;
-            margin-top: 10px;
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
-        .features-list li {
+        .feature-box {
+            background: #f8f9fa;
+            border-left: 4px solid #0288d1;
+            padding: 18px;
+            border-radius: 6px;
+        }
+        .feature-box h4 {
+            color: #0288d1;
+            font-size: 18px;
             margin-bottom: 8px;
         }
-        .tech-badge {
-            display: inline-block;
-            background: #e1f5fe;
-            color: #0288d1;
-            padding: 5px 12px;
-            border-radius: 15px;
+        .feature-box p {
             font-size: 14px;
-            font-weight: bold;
-            margin-right: 8px;
-            margin-top: 10px;
+            color: #666;
+            line-height: 1.5;
         }
-        .contact-box {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #e8f4f8;
-            border-left: 5px solid #007bff;
-            border-radius: 4px;
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #0288d1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #01579b;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>RODRIGO DIGITAL SYSTEMS</h1>
-        <p>GN Database App - ග්‍රාම නිලධාරී වසම් කළමනාකරණ පද්ධතිය</p>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="RDS Logo">
+            <h1>RODRIGO DIGITAL SYSTEMS</h1>
+        </div>
+        <nav>
+            <a href="index.html">🏠 මුල් පිටුවට (Home)</a>
+        </nav>
     </header>
 
-    <div class="container">
-        <a href="index.html" class="back-btn">&larr; ප්‍රධාන පිටුවට (Home)</a>
+    <div class="main-container">
+        <div class="title-section">
+            <h2>GN Database Management System</h2>
+            <span class="badge">MySQL Server</span>
+        </div>
 
-        <div class="system-card">
-            <img src="images/gn-app.png" alt="GN Database App" class="system-img">
+        <img src="images/gn-app.png" alt="GN Database App" class="app-img">
 
-            <h2>පද්ධතිය පිළිබඳ හැඳින්වීම</h2>
-            <p>
-                ග්‍රාම නිලධාරී වසමක පවුල් සහ පුද්ගල තොරතුරු ආරක්ෂිතව, විධිමත්ව හා කාර්යක්ෂමව පාලනය කිරීම සඳහා විශේෂයෙන් නිර්මාණය කරන ලද මෘදුකාංග පද්ධතියකි. මෙමඟින් දත්ත සෙවීම, වාර්තා සැකසීම සහ සහතික පත් ලබා දීම ඉතා ඉක්මනින් සිදු කළ හැක.
-            </p>
+        <div class="description">
+            <p>ග්‍රාම නිලධාරී වසමක සමස්ත පවුල්, පුද්ගලයන් සහ දේපළ පිළිබඳ තොරතුරු ආරක්ෂිතව, පහසුවෙන් සහ කාර්යක්ෂමව පාලනය කිරීම සඳහාම විශේෂයෙන් සකස් කරන ලද දත්ත පද්ධතියකි. වසර 18ක ප්‍රායෝගික ක්ෂේත්‍ර අත්දැකීම් පදනම් කරගෙන නිර්මාණය කර ඇති බැවින් රාජ්‍ය සේවා කටයුතු සරලව සිදු කර ගැනීමට උපකාරී වේ.</p>
+        </div>
 
-            <br>
-            <h2>ප්‍රධාන විශේෂාංග (Key Features)</h2>
-            <ul class="features-list">
-                <li>පවුල් සහ පුද්ගල තොරතුරු ඇතුළත් කිරීම සහ යාවත්කාලීන කිරීම.</li>
-                <li>ක්ෂණිකව දත්ත සෙවීමේ පහසුකම (Advanced Search by NIC / Name / House No).</li>
-                <li>ජ්‍යෙෂ්ඨ පුරවැසියන්, අස්වැසුම ප්‍රතිලාභීන් සහ විශේෂ අවශ්‍යතා සහිත අයගේ ලැයිස්තු වෙන්කර ගැනීම.</li>
-                <li>විවිධ නිල වාර්තා (Reports) පහසුවෙන් Print/Export කරගැනීමේ හැකියාව.</li>
-                <li>දත්ත ආරක්ෂිතව පවත්වා ගැනීමට පරිශීලක මුරපද (User Authentication).</li>
-            </ul>
+        <h3>ප්‍රධාන විශේෂාංග (Key Features):</h3>
+        <br>
 
-            <br>
-            <h2>භාවිත කළ තාක්ෂණයන් (Technologies Used)</h2>
-            <div>
-                <span class="tech-badge">MySQL Server</span>
-                <span class="tech-badge">Desktop UI Framework</span>
-                <span class="tech-badge">Database Management</span>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h4>👨‍👩‍👧‍👦 පවුල් හා පුද්ගල දත්ත</h4>
+                <p>වසමේ සියලු පවුල් ඒකක සහ පුද්ගලික තොරතුරු නිවැරදිව පවත්වා ගැනීම.</p>
             </div>
-
-            <div class="contact-box">
-                <h3>මෙම පද්ධතිය ලබාගැනීමට හෝ Demo එකක් නැරඹීමට අවශ්‍යද?</h3>
-                <p>වැඩිදුර තොරතුරු සඳහා අප හා සම්බන්ධ වන්න: <strong>07X XXXXXXX</strong></p>
+            <div class="feature-box">
+                <h4>📄 සහතික පත්‍ර නිකුත් කිරීම</h4>
+                <p>පදිංචි සහතික, චරිත සහතික ඇතුළු අවශ්‍ය ලියකියවිලි කඩිනමින් මුද්‍රණය කිරීම.</p>
+            </div>
+            <div class="feature-box">
+                <h4>📊 වාර්තා සකස් කිරීම</h4>
+                <p>ඡන්ද හිමි නාමලේඛන, සහනාධාර ලැයිස්තු ඇතුළු විවිධ වාර්තා ක්ෂණිකව ලබා ගැනීම.</p>
+            </div>
+            <div class="feature-box">
+                <h4>🔒 උසස් දත්ත ආරක්ෂාව</h4>
+                <p>MySQL Database තාක්ෂණය හරහා දත්තවල ආරක්ෂාව හා විශ්වසනීයත්වය තහවුරු කිරීම.</p>
             </div>
         </div>
+
+        <a href="index.html" class="back-btn">⬅️ මුල් පිටුවට යන්න</a>
     </div>
 
 </body>
