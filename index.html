@@ -11,6 +11,9 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             background-color: #0288d1;
             color: #333;
@@ -79,6 +82,7 @@
             padding: 25px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             border-left: 6px solid #f39c12;
+            scroll-margin-top: 100px;
         }
         .profile-card h3 {
             color: #2c3e50;
@@ -117,6 +121,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
+            scroll-margin-top: 100px;
         }
         .card {
             background: #fff;
