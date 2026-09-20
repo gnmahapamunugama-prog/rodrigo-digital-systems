@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Digital Systems - Admin Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f0f4f8; color: #333; padding: 20px; }
+        .admin-container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h1 { color: #01579b; margin-bottom: 20px; text-align: center; border-bottom: 3px solid #01579b; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; font-size: 14px; }
+        th { background-color: #01579b; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .btn-approve { background-color: #27ae60; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; margin-right: 5px; }
+        .btn-delete { background-color: #c0392b; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .status-approved { color: #27ae60; font-weight: bold; }
+        .status-pending { color: #d35400; font-weight: bold; }
+        .back-link { display: inline-block; margin-bottom: 15px; color: #0288d1; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <a href="index.html" class="back-link">← වෙබ් අඩවියට යන්න</a>
+        <h1>📊 Admin Dashboard - පාරිභෝගික විමසීම් සහ ඇණවුම්</h1>
+        
+        <table id="inquiryTable">
+            <thead>
+                <tr>
+                    <th>දිනය / වෙලාව</th>
+                    <th>නම</th>
+                    <th>දුරකථන අංකය</th>
+                    <th>පණිවිඩය / පැකේජය</th>
+                    <th>තත්ත්වය (Status)</th>
+                    <th>ක්‍රියාමාර්ග (Actions)</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Data will load here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function loadInquiries() {
+            const tableBody = document.getElementById('tableBody');
+            let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
+            
+            tableBody.innerHTML = '';
+            if (inquiries.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #777;">තවම විමසීම් ලැබී නැත.</td></tr>`;
+                return;
+            }
+
+            inquiries.reverse().forEach((item, index) => {
+                let row = document.createElement('tr');
+                let cleanPhone = item.phone.startsWith('0') ? '94' + item.phone.slice(1) : item.phone;
+                
+                row.innerHTML = `
+                    <td>${item.date}</td>
+                    <td><b>${item.name}</b></td>
+                    <td>${item.phone}</td>
+                    <td>${item.message}</td>
+                    <td><span class="${item.status === 'Approved' ? 'status-approved' : 'status-pending'}">${item.status}</span></td>
+                    <td>
+                        <a href="https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(item.name)},%20Your%20order/inquiry%20at%20Rodrigo%20Digital%20Systems%20has%20been%20Approved!%20ගැනීමට%20ස්තුතියි." 
+                           class="btn-approve" target="_blank" onclick="markApproved(${item.id})">✅ Approve & WhatsApp</a>
+                        <button class="btn-delete" onclick="deleteItem(${item.id})">🗑️ ඉවත් කරන්න</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function markApproved(id) {
+            let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
+            inquiries = inquiries.map(item => {
+                if(item.id === id) item.status = 'Approved';
+                return item;
+            });
+            localStorage.setItem('rds_inquiries', JSON.stringify(inquiries));
+            setTimeout(loadInquiries, 500);
+        }
+
+        function deleteItem(id) {
+            if(confirm('මෙම විමසම ඉවත් කිරීමට අවශ්‍ය බව یقین ද?')) {
+                let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
+                inquiries = inquiries.filter(item => item.id !== id);
+                localStorage.setItem('rds_inquiries', JSON.stringify(inquiries));
+                loadInquiries();
+            }
+        }
+
+        window.onload = loadInquiries;
+    </script>
+</body>
+</html>
