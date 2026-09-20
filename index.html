@@ -6,101 +6,181 @@
     <title>Rodrigo Digital Systems</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f8f9fa; color: #333; }
         
+        /* දීප්තිමත් Sky Blue පසුබිම සහ ඇතුළට ගිලුණු Deep Box Frame එක */
+        body { 
+            background-color: #87CEEB; 
+            color: #333; 
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .dashboard-frame {
+            background-color: #e0f2fe;
+            border: 12px solid #0288d1;
+            border-radius: 20px;
+            box-shadow: inset 0px 10px 25px rgba(0,0,0,0.5), 0px 15px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+
+        /* අඟල් 2ක් පමණ මහත, ඉදිරියට නෙරා එන 3D Header එක */
         header { 
             background: linear-gradient(135deg, #f39c12, #f1c40f); 
+            min-height: 110px; 
             padding: 15px 30px; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+            border-bottom: 4px solid #d35400;
+            position: relative;
+            z-index: 10;
         }
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-container img { height: 45px; border-radius: 5px; }
-        .logo-container h1 { font-size: 22px; color: #000; letter-spacing: 1px; }
+
+        .logo-container { display: flex; align-items: center; gap: 20px; width: 100%; justify-content: center; }
+        .logo-container img { height: 65px; border-radius: 8px; box-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
         
-        nav a { 
-            text-decoration: none; 
-            color: #333; 
-            background: #fff; 
-            padding: 8px 18px; 
-            border-radius: 20px; 
-            font-weight: 600; 
-            transition: 0.3s; 
+        /* 3D කැටයම් සහිත මැදට කළ ප්‍රධාන නම */
+        .logo-container h1 { 
+            font-size: 32px; 
+            color: #111; 
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-align: center;
+            text-shadow: 2px 2px 0px #fff, 5px 5px 0px rgba(0,0,0,0.2);
         }
-        nav a:hover { background: #333; color: #fff; }
 
-        .hero { text-align: center; padding: 40px 20px 20px; }
-        .hero h2 { font-size: 32px; color: #2c3e50; margin-bottom: 10px; }
-        .hero p { font-size: 16px; color: #7f8c8d; }
+        /* Layout Container (Sidebar + Main Content) */
+        .main-layout {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+        }
 
+        /* වම්පස තීරුව (Sidebar) */
+        .sidebar {
+            width: 260px;
+            background: #ffffff;
+            padding: 20px 15px;
+            border-radius: 12px;
+            box-shadow: inset 3px 3px 8px rgba(0,0,0,0.2), 0 5px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #0288d1;
+            text-align: center;
+            border-bottom: 2px solid #0288d1;
+            padding-bottom: 8px;
+        }
+
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 12px; }
+
+        /* අකුරු ගැඹුරට ඇතුළට නෙරා යන (Engraved) Effect එක සහිත Links */
+        .sidebar a {
+            display: block;
+            padding: 10px 15px;
+            background: #e6f2ff;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+            text-shadow: 1px 1px 1px #fff, -1px -1px 1px rgba(0,0,0,0.5);
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: #0288d1;
+            color: #fff;
+            text-shadow: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* දකුණු පස ප්‍රධාන කොටස */
+        .content-area { flex-grow: 1; }
+
+        /* Developer Background Section */
+        .developer-card {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 6px solid #f39c12;
+        }
+
+        .developer-card h3 { color: #2c3e50; margin-bottom: 10px; font-size: 20px; }
+        .developer-card p { color: #555; line-height: 1.6; font-size: 15px; margin-bottom: 15px; }
+        .badges-list { display: flex; gap: 10px; flex-wrap: wrap; }
+        .badge-item { background: #27ae60; color: #fff; padding: 6px 12px; border-radius: 15px; font-size: 13px; font-weight: bold; }
+
+        /* Cards Grid */
         .container { 
-            max-width: 1200px; 
-            margin: 30px auto; 
-            padding: 0 20px; 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 25px; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
         }
 
         .card { 
             background: #fff; 
             border-radius: 12px; 
             overflow: hidden; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
             transition: transform 0.3s, box-shadow 0.3s; 
             position: relative; 
             display: flex; 
             flex-direction: column; 
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
 
-        .badge { 
+        .card-badge { 
             position: absolute; 
-            top: 15px; 
-            left: 15px; 
-            background: rgba(0, 0, 0, 0.75); 
+            top: 12px; 
+            left: 12px; 
+            background: rgba(0, 0, 0, 0.8); 
             color: #fff; 
-            width: 28px; 
-            height: 28px; 
+            width: 26px; 
+            height: 26px; 
             border-radius: 50%; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             font-weight: bold; 
-            font-size: 14px; 
+            font-size: 13px; 
             z-index: 2; 
         }
 
         .tech-tag { 
             position: absolute; 
-            top: 15px; 
-            right: 15px; 
+            top: 12px; 
+            right: 12px; 
             background: #27ae60; 
             color: #fff; 
-            padding: 4px 10px; 
-            border-radius: 12px; 
-            font-size: 12px; 
+            padding: 3px 8px; 
+            border-radius: 10px; 
+            font-size: 11px; 
             font-weight: 600; 
             z-index: 2; 
         }
-        .tech-tag.sqlite { background: #27ae60; }
-        .tech-tag.mysql { background: #0288d1; }
 
-        .card-img-container { width: 100%; height: 180px; overflow: hidden; background: #eef2f5; }
+        .card-img-container { width: 100%; height: 160px; overflow: hidden; background: #eef2f5; }
         .card-img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-        .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-body h3 { font-size: 20px; color: #2c3e50; margin-bottom: 10px; }
-        .card-body p { font-size: 14px; color: #666; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+        .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-body h3 { font-size: 18px; color: #2c3e50; margin-bottom: 8px; }
+        .card-body p { font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 15px; flex-grow: 1; }
 
         .btn { 
             display: block; 
             text-align: center; 
             background: #f39c12; 
             color: #fff; 
-            padding: 10px; 
+            padding: 8px; 
             border-radius: 6px; 
             text-decoration: none; 
             font-weight: bold; 
@@ -108,119 +188,146 @@
         }
         .btn:hover { background: #e67e22; }
 
-        footer { text-align: center; padding: 30px; color: #7f8c8d; font-size: 14px; margin-top: 40px; }
+        footer { text-align: center; padding: 20px; color: #555; font-size: 14px; margin-top: 20px; font-weight: 600; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-container">
-            <img src="images/logo.jpg" alt="RDS Logo" onerror="this.style.display='none'">
-            <h1>RODRIGO DIGITAL SYSTEMS</h1>
-        </div>
-        <nav>
-            <a href="index.html">🏠 මුල් පිටුව</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h2>අපගේ මෘදුකාංග පද්ධති (Software Solutions)</h2>
-        <p>ආයතනික සහ රාජ්‍ය අංශයේ කාර්යක්ෂමතාව ඉහළ නැංවීම සඳහා නිර්මාණය කරන ලද නවීන මෘදුකාංග විසඳුම්.</p>
-    </section>
-
-    <div class="container">
-
-        <!-- Card 1 -->
-        <div class="card">
-            <div class="badge">1</div>
-            <div class="tech-tag sqlite">SQLite</div>
-            <div class="card-img-container"><img src="images/gn-app.png" alt="GN Database App"></div>
-            <div class="card-body">
-                <h3>GN Database App</h3>
-                <p>ග්‍රාම නිලධාරී වසමේ කළමනාකරණය සඳහා නිර්මාණය කරන ලද පරිපූර්ණ පද්ධතිය.</p>
-                <a href="gn-app.html" class="btn">විස්තර බලන්න</a>
+    <div class="dashboard-frame">
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <img src="images/logo.png" alt="RDS Logo" onerror="this.style.display='none'">
+                <h1>RODRIGO DIGITAL SYSTEMS</h1>
             </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>ප්‍රධාන මාතෘකා</h3>
+                <ul>
+                    <li><a href="gn-app.html">1. GN Database App</a></li>
+                    <li><a href="preschool.html">2. Preschool Manager</a></li>
+                    <li><a href="library.html">3. Library System</a></li>
+                    <li><a href="ayurveda.html">4. Ayurveda Center</a></li>
+                    <li><a href="prison.html">5. Prison Pro</a></li>
+                    <li><a href="swara.html">6. Swara Studio</a></li>
+                    <li><a href="shop.html">7. Shop & POS System</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+                
+                <!-- Developer Background Section -->
+                <section class="developer-card">
+                    <h3>🏆 මෘදුකාංග නිර්මාණකරුගේ පසුබිම (Developer Background)</h3>
+                    <p>වසර 35කට අධික ප්‍රායෝගික රාජ්‍ය සේවා පළපුරුද්ද සහිත විශ්‍රාමික ග්‍රාම නිලධාරීවරයෙකු විසින් මෙම පද්ධති සැලසුම් කර ඇත. වසර 18ක් පුරා ග්‍රාම නිලධාරී දත්ත පද්ධති යාවත්කාලීන කරමින් ලබාගත් පරිපූර්ණ දැනුම මෙයට යොදාගෙන තිබේ.</p>
+                    <div class="badges-list">
+                        <span class="badge-item">🏅 2010-2011 ග්‍රාම නිලධාරී කාර්යාල කළමනාකරණ තරගය - සමස්ත ශ්‍රී ලංකා 03 වන ස්ථානය</span>
+                        <span class="badge-item">🎖️ ජනාධිපති විශේෂ කුසලතා සම්මාන ලාභී</span>
+                        <span class="badge-item">⭐ වසර 35+ ක්ෂේත්‍ර පළපුරුද්ද</span>
+                    </div>
+                </section>
+
+                <!-- Cards Grid -->
+                <div class="container">
+
+                    <!-- Card 1 -->
+                    <div class="card">
+                        <div class="card-badge">1</div>
+                        <div class="tech-tag">SQLite</div>
+                        <div class="card-img-container"><img src="images/gn-app.png" alt="GN Database App"></div>
+                        <div class="card-body">
+                            <h3>GN Database App</h3>
+                            <p>ග්‍රාම නිලධාරී වසමේ කළමනාකරණය සඳහා නිර්මාණය කරන ලද පරිපූර්ණ පද්ධතිය.</p>
+                            <a href="gn-app.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card">
+                        <div class="card-badge">2</div>
+                        <div class="tech-tag">MySQL Server</div>
+                        <div class="card-img-container"><img src="images/preschool.png" alt="Preschool Manager Pro"></div>
+                        <div class="card-body">
+                            <h3>Preschool Manager Pro</h3>
+                            <p>පෙරපාසල් ළමුන්ගේ සහ ගුරු මණ්ඩලයේ තොරතුරු කළමනාකරණය කිරීමේ පද්ධතිය.</p>
+                            <a href="preschool.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card">
+                        <div class="card-badge">3</div>
+                        <div class="tech-tag">MySQL Server</div>
+                        <div class="card-img-container"><img src="images/library.png" alt="Library Management System"></div>
+                        <div class="card-body">
+                            <h3>Library Management System</h3>
+                            <p>පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පාලනය කිරීමේ පද්ධතිය.</p>
+                            <a href="library.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card">
+                        <div class="card-badge">4</div>
+                        <div class="tech-tag">MySQL / SQLite</div>
+                        <div class="card-img-container"><img src="images/ayurveda.png" alt="Ayurveda Center Pro"></div>
+                        <div class="card-body">
+                            <h3>Ayurveda Center Pro</h3>
+                            <p>ආයුර්වේද මධ්‍යස්ථාන සඳහා වන රෝගීන්ගේ සහ ඖෂධ කළමනාකරණ පද්ධතිය.</p>
+                            <a href="ayurveda.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="card">
+                        <div class="card-badge">5</div>
+                        <div class="tech-tag">MySQL Server</div>
+                        <div class="card-img-container"><img src="images/prison.png" alt="Prison Pro"></div>
+                        <div class="card-body">
+                            <h3>Prison Pro</h3>
+                            <p>බන්ධනාගාර තොරතුරු සහ රඳවා තැබීම් කළමනාකරණය සඳහා වන විශේෂිත පද්ධතිය.</p>
+                            <a href="prison.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="card">
+                        <div class="card-badge">6</div>
+                        <div class="tech-tag">SQLite</div>
+                        <div class="card-img-container"><img src="images/swara.png" alt="Swara Sangeetha Studio"></div>
+                        <div class="card-body">
+                            <h3>Swara Sangeetha Studio</h3>
+                            <p>සංගීත පන්ති සහ ශිෂ්‍ය තොරතුරු පාලනය සඳහා වන මෘදුකාංගය.</p>
+                            <a href="swara.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="card">
+                        <div class="card-badge">7</div>
+                        <div class="tech-tag">MySQL / SQLite</div>
+                        <div class="card-img-container"><img src="images/shop-system.png" alt="Shop System"></div>
+                        <div class="card-body">
+                            <h3>Shop & POS System</h3>
+                            <p>වෙළඳසැල් සඳහා වන භාණ්ඩ තොග පාලන සහ බිල්පත් නිකුත් කිරීමේ පද්ධතිය.</p>
+                            <a href="shop.html" class="btn">විස්තර බලන්න</a>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
         </div>
 
-        <!-- Card 2 -->
-        <div class="card">
-            <div class="badge">2</div>
-            <div class="tech-tag mysql">MySQL Server</div>
-            <div class="card-img-container"><img src="images/preschool.png" alt="Preschool Manager Pro"></div>
-            <div class="card-body">
-                <h3>Preschool Manager Pro</h3>
-                <p>පෙරපාසල් ළමුන්ගේ සහ ගුරු මණ්ඩලයේ තොරතුරු කළමනාකරණය කිරීමේ පද්ධතිය.</p>
-                <a href="preschool.html" class="btn">විස්තර බලන්න</a>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="card">
-            <div class="badge">3</div>
-            <div class="tech-tag mysql">MySQL Server</div>
-            <div class="card-img-container"><img src="images/library.png" alt="Library Management System"></div>
-            <div class="card-body">
-                <h3>Library Management System</h3>
-                <p>පොත්පත්, සාමාජිකයින් සහ නිකුත් කිරීම් පාලනය කිරීමේ පද්ධතිය.</p>
-                <a href="library.html" class="btn">විස්තර බලන්න</a>
-            </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="card">
-            <div class="badge">4</div>
-            <div class="tech-tag mysql">MySQL / SQLite</div>
-            <div class="card-img-container"><img src="images/ayurveda.png" alt="Ayurveda Center Pro"></div>
-            <div class="card-body">
-                <h3>Ayurveda Center Pro</h3>
-                <p>ආයුර්වේද මධ්‍යස්ථාන සඳහා වන රෝගීන්ගේ සහ ඖෂධ කළමනාකරණ පද්ධතිය.</p>
-                <a href="ayurveda.html" class="btn">විස්තර බලන්න</a>
-            </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="card">
-            <div class="badge">5</div>
-            <div class="tech-tag mysql">MySQL Server</div>
-            <div class="card-img-container"><img src="images/prison.png" alt="Prison Pro"></div>
-            <div class="card-body">
-                <h3>Prison Pro</h3>
-                <p>බන්ධනාගාර තොරතුරු සහ රඳවා තැබීම් කළමනාකරණය සඳහා වන විශේෂිත පද්ධතිය.</p>
-                <a href="prison.html" class="btn">විස්තර බලන්න</a>
-            </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="card">
-            <div class="badge">6</div>
-            <div class="tech-tag sqlite">SQLite</div>
-            <div class="card-img-container"><img src="images/swara.png" alt="Swara Sangeetha Studio"></div>
-            <div class="card-body">
-                <h3>Swara Sangeetha Studio</h3>
-                <p>සංගීත පන්ති සහ ශිෂ්‍ය තොරතුරු පාලනය සඳහා වන මෘදුකාංගය.</p>
-                <a href="swara.html" class="btn">විස්තර බලන්න</a>
-            </div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="card">
-            <!-- Card 7 -->
-        <div class="card">
-            <div class="badge">7</div>
-            <div class="tech-tag sqlite">MySQL / SQLite</div>
-            <div class="card-img-container"><img src="images/shop-system.png" alt="Shop System"></div>
-            <div class="card-body">
-                <h3>Shop & POS System</h3>
-                <p>වෙළඳසැල් සඳහා වන භාණ්ඩ තොග පාලන සහ බිල්පත් නිකුත් කිරීමේ පද්ධතිය.</p>
-                <a href="shop.html" class="btn">විස්තර බලන්න</a>
-            </div>
-        </div>
-
+        <footer>
+            <p>&copy; 2026 Rodrigo Digital Systems. All Rights Reserved.</p>
+        </footer>
     </div>
-
-    <footer>
-        <p>&copy; 2026 Rodrigo Digital Systems. All Rights Reserved.</p>
-    </footer>
 
 </body>
 </html>
