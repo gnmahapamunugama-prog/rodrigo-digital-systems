@@ -174,6 +174,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
+            margin-bottom: 30px;
         }
 
         .pricing-card {
@@ -261,6 +262,48 @@
 
         .btn-price:hover {
             background: linear-gradient(145deg, #01579b, #002f6c);
+        }
+
+        /* Bank Details Box inside Pricing */
+        .bank-transfer-box {
+            background: #fffbeb;
+            border: 2px dashed #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .bank-transfer-box h3 {
+            color: #b45309;
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .bank-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            font-size: 14px;
+            color: #333;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .bank-info-item span {
+            font-weight: bold;
+            color: #01579b;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .bank-note {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 12px;
         }
 
         /* Systems Grid */
@@ -393,6 +436,26 @@
                             <a href="https://wa.me/94710912960?text=I%20want%20the%20MAX%20Package%20unlimited." class="btn-price" target="_blank">MAX ලබාගන්න</a>
                         </div>
                     </div>
+
+                    <!-- Bank Transfer Box -->
+                    <div class="bank-transfer-box">
+                        <h3>🏦 බැංකු තැන්පත් කිරීම් සඳහා ගිණුම් විස්තර (Bank Transfer Details)</h3>
+                        <div class="bank-info-grid">
+                            <div class="bank-info-item">
+                                <span>බැංකුව (Bank):</span> සම්පත් බැංකුව (Sampath Bank)
+                            </div>
+                            <div class="bank-info-item">
+                                <span>ශාඛාව (Branch):</span> වත්තල ශාඛාව (Wattala Branch)
+                            </div>
+                            <div class="bank-info-item">
+                                <span>ගිණුමේ නම (Account Name):</span> B.K.N.J.RODRIGO
+                            </div>
+                            <div class="bank-info-item">
+                                <span>ගිණුම් අංකය (Account Number):</span> 100850125559
+                            </div>
+                        </div>
+                        <p class="bank-note">💡 මුදල් තැන්පත් කළ පසු, එහි බැංකු ස්ලිප් එක (Bank Slip) අපගේ WhatsApp අංකයට (<a href="https://wa.me/94710912960" target="_blank" style="color: #01579b; font-weight: bold;">071 091 2960</a>) එවන්න. ඉන්පසු වහාම ඔබගේ මෘදුකාංගය සක්‍රීය කර දෙනු ලැබේ.</p>
+                    </div>
                 </section>
 
                 <div class="systems-grid">
@@ -486,7 +549,7 @@
             const message = document.getElementById('custMessage').value;
 
             // Save to LocalStorage for Admin Dashboard
-            let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
+            let inquiries = JSON.parse(localStorage.getItem('customerInquiries') || '[]');
             const newEntry = {
                 id: Date.now(),
                 name: name,
@@ -496,7 +559,7 @@
                 date: new Date().toLocaleString()
             };
             inquiries.push(newEntry);
-            localStorage.setItem('rds_inquiries', JSON.stringify(inquiries));
+            localStorage.setItem('customerInquiries', JSON.stringify(inquiries));
 
             // Redirect to Admin's WhatsApp with details
             const waText = `New Inquiry!%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(message)}`;
