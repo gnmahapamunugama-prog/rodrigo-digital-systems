@@ -3,97 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodrigo Digital Systems - Admin Dashboard</title>
+    <title>Admin Dashboard - GN Digital Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Iskoola+Pota&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f0f4f8; color: #333; padding: 20px; }
-        .admin-container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        h1 { color: #01579b; margin-bottom: 20px; text-align: center; border-bottom: 3px solid #01579b; padding-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px 15px; border: 1px solid #ddd; text-align: left; font-size: 14px; }
-        th { background-color: #01579b; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .btn-approve { background-color: #27ae60; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; margin-right: 5px; }
-        .btn-delete { background-color: #c0392b; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .status-approved { color: #27ae60; font-weight: bold; }
-        .status-pending { color: #d35400; font-weight: bold; }
-        .back-link { display: inline-block; margin-bottom: 15px; color: #0288d1; text-decoration: none; font-weight: bold; }
+        body {
+            font-family: 'Iskoola Pota', sans-serif;
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen">
 
-    <div class="admin-container">
-        <a href="index.html" class="back-link">← වෙබ් අඩවියට යන්න</a>
-        <h1>📊 Admin Dashboard - පාරිභෝගික විමසීම් සහ ඇණවුම්</h1>
-        
-        <table id="inquiryTable">
-            <thead>
-                <tr>
-                    <th>දිනය / වෙලාව</th>
-                    <th>නම</th>
-                    <th>දුරකථන අංකය</th>
-                    <th>පණිවිඩය / පැකේජය</th>
-                    <th>තත්ත්වය (Status)</th>
-                    <th>ක්‍රියාමාර්ග (Actions)</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <!-- Data will load here dynamically -->
-            </tbody>
-        </table>
+    <!-- Login Modal / Screen -->
+    <div id="loginModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-96 text-center">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">🔒 Admin Login</h2>
+            <p class="text-sm text-gray-600 mb-4">කරුණාකර පද්ධතියට පිවිසීමට මුරපදය ඇතුළත් කරන්න.</p>
+            <input type="password" id="adminPassword" placeholder="මුරපදය (Password)" class="w-full px-4 py-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="checkLogin()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-semibold transition">පිවිසෙන්න (Login)</button>
+            <p id="loginError" class="text-red-500 text-sm mt-2 hidden">වැරදි මුරපදයක්! කරුණාකර නැවත උත්සාහ කරන්න.</p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div id="dashboardContent" class="hidden">
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="text-blue-600 hover:underline text-sm font-semibold">← වෙබ් අඩවියට යන්න</a>
+                    <h1 class="text-xl font-bold text-gray-800">📊 Admin Dashboard</h1>
+                </div>
+                <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition">🚪 ඉවත් වන්න (Logout)</button>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 py-6">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-6 py-4 bg-blue-900 text-white font-bold flex justify-between items-center">
+                    <span>පාරිභෝගික විමසීම් සහ ඇණවුම් ලැයිස්තුව</span>
+                    <button onclick="clearInquiries()" class="bg-red-600 text-xs px-3 py-1 rounded hover:bg-red-700 transition">සියල්ල මකන්න</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">දිනය / වේලාව</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">නම</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">දුරකථන අංකය</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">පණිවිඩය / පැකේජය</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">ක්‍රියාමාර්ග (Actions)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiriesTableBody" class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td colspan="5" class="px-6 py-4 text-center text-gray-500 text-sm">තවම විමසීම් ලැබී නැත.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
+        // Password Protection Logic
+        const CORRECT_PASSWORD = "admin123"; // ඔබට අවශ්‍ය නම් මෙම මුරපදය වෙනස් කරගත හැක
+
+        function checkLogin() {
+            const pass = document.getElementById('adminPassword').value;
+            if (pass === CORRECT_PASSWORD) {
+                localStorage.setItem('isAdminLoggedIn', 'true');
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('dashboardContent').classList.remove('hidden');
+                loadInquiries();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('isAdminLoggedIn');
+            location.reload();
+        }
+
+        // Check if already logged in during this session
+        window.onload = function() {
+            if (localStorage.getItem('isAdminLoggedIn') === 'true') {
+                document.getElementById('loginModal').classList.add('hidden');
+                document.getElementById('dashboardContent').classList.remove('hidden');
+                loadInquiries();
+            }
+        };
+
+        // Load Inquiries function
         function loadInquiries() {
-            const tableBody = document.getElementById('tableBody');
-            let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
+            const inquiries = JSON.parse(localStorage.getItem('customerInquiries')) || [];
+            const tbody = document.getElementById('inquiriesTableBody');
             
-            tableBody.innerHTML = '';
             if (inquiries.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #777;">තවම විමසීම් ලැබී නැත.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500 text-sm">තවම විමසීම් ලැබී නැත.</td></tr>`;
                 return;
             }
 
-            inquiries.reverse().forEach((item, index) => {
-                let row = document.createElement('tr');
-                let cleanPhone = item.phone.startsWith('0') ? '94' + item.phone.slice(1) : item.phone;
-                
-                row.innerHTML = `
-                    <td>${item.date}</td>
-                    <td><b>${item.name}</b></td>
-                    <td>${item.phone}</td>
-                    <td>${item.message}</td>
-                    <td><span class="${item.status === 'Approved' ? 'status-approved' : 'status-pending'}">${item.status}</span></td>
-                    <td>
-                        <a href="https://wa.me/${cleanPhone}?text=Hello%20${encodeURIComponent(item.name)},%20Your%20order/inquiry%20at%20Rodrigo%20Digital%20Systems%20has%20been%20Approved!%20ගැනීමට%20ස්තුතියි." 
-                           class="btn-approve" target="_blank" onclick="markApproved(${item.id})">✅ Approve & WhatsApp</a>
-                        <button class="btn-delete" onclick="deleteItem(${item.id})">🗑️ ඉවත් කරන්න</button>
+            tbody.innerHTML = '';
+            inquiries.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">${item.date}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-right">${item.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-right">${item.phone}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500 text-right">${item.message}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                        <a href="https://api.whatsapp.com/send?phone=94710912960&text=Hi%20${encodeURIComponent(item.name)},%20We%20received%20your%20inquiry%20regarding%20GN%20Digital%20Systems." target="_blank" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition inline-block text-xs">💬 WhatsApp Reply</a>
+                        <button onclick="deleteInquiry(${index})" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition text-xs ml-2">මකන්න</button>
                     </td>
                 `;
-                tableBody.appendChild(row);
+                tbody.appendChild(label = tr);
             });
         }
 
-        function markApproved(id) {
-            let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
-            inquiries = inquiries.map(item => {
-                if(item.id === id) item.status = 'Approved';
-                return item;
-            });
-            localStorage.setItem('rds_inquiries', JSON.stringify(inquiries));
-            setTimeout(loadInquiries, 500);
+        function deleteInquiry(index) {
+            let inquiries = JSON.parse(localStorage.getItem('customerInquiries')) || [];
+            inquiries.splice(index, 1);
+            localStorage.setItem('customerInquiries', JSON.stringify(inquiries));
+            loadInquiries();
         }
 
-        function deleteItem(id) {
-            if(confirm('මෙම විමසම ඉවත් කිරීමට අවශ්‍ය බව یقین ද?')) {
-                let inquiries = JSON.parse(localStorage.getItem('rds_inquiries') || '[]');
-                inquiries = inquiries.filter(item => item.id !== id);
-                localStorage.setItem('rds_inquiries', JSON.stringify(inquiries));
+        function clearInquiries() {
+            if (confirm('ඔබට සියලුම විමසීම් ඉවත් කිරීමට අවශ්‍ය බව විශ්වාසද?')) {
+                localStorage.removeItem('customerInquiries');
                 loadInquiries();
             }
         }
-
-        window.onload = loadInquiries;
     </script>
 </body>
 </html>
